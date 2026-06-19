@@ -218,16 +218,15 @@
       font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
       color: var(--sage); margin-bottom: 3rem;
     }
-    .mv-slider { position: relative; min-height: 240px; }
-    .mv-slide {
-      position: absolute; top: 0; left: 0; right: 0;
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 0.85s ease, transform 0.85s ease;
-      pointer-events: none;
-    }
+    .mv-slider { position: relative; }
+    .mv-slide { display: none; }
     .mv-slide.active {
-      opacity: 1; transform: translateY(0);
-      pointer-events: auto; position: relative;
+      display: block;
+      animation: mvFadeUp 0.85s ease forwards;
+    }
+    @keyframes mvFadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .mv-slide-label {
       font-family: 'Inter', sans-serif;
@@ -652,7 +651,7 @@
     }
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links, .nav-tagline { display: none; }
+      .nav-links { display: none; }
       .hero { padding: 96px 20px 80px; }
       .hero-sub, .hero-rule, .hero-quote { margin-bottom: 44px; }
       .audience-row { grid-template-columns: 44px 1fr; }
@@ -669,8 +668,6 @@
      NAV
 ══════════════════════════════════════════ -->
 <nav>
-  <a href="#cover" class="nav-logo">ArcaNova</a>
-  <span class="nav-tagline">The Season Is Now</span>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#problem-section">The Problem</a></li>
@@ -889,7 +886,6 @@
         <div class="stat-caption">Size of Europe's nutraceuticals market in 2025 — nearly doubling by 2035</div>
       </div>
     </div>
-    <div class="sources">Sources: European Environment Agency / EIB–EPRS (2025); FAO; Food Industry Association (FMI); Global Market Insights; Precedence Research.</div>
   </div>
 </section>
 
@@ -983,7 +979,7 @@
       5. Done — submissions arrive at aviswanath@arcanova-france.com
     -->
     <form class="form-stack"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/xykarpga"
           method="POST">
 
       <input type="hidden" name="_subject" value="New enquiry — ArcaNova website">
