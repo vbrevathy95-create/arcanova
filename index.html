@@ -17,8 +17,6 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --forest:      #122A1B;
       --forest-deep: #0B1810;
@@ -30,169 +28,158 @@
       --ink:         #1E1B16;
       --ink-soft:    #3A3527;
       --grey:        #7A7260;
+      --border-l:    #DCD5BD;
       --border-d:    rgba(245,241,230,0.12);
-      --border-l:    rgba(18,42,27,0.12);
-      --font-head:   'EB Garamond', Georgia, 'Times New Roman', serif;
-      --font-body:   'Inter', system-ui, sans-serif;
-      --tr:          0.25s ease;
     }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: var(--font-head);
+      font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
       background: var(--forest);
       color: var(--cream);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(11,24,16,0.92);
-      backdrop-filter: blur(14px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(11,24,16,0.94);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-d);
     }
-
     .nav-logo {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none;
     }
-
     .nav-tagline {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: 0.85rem;
-      color: var(--sage-light);
-      letter-spacing: 0.04em;
+      font-family: 'EB Garamond', serif;
+      font-style: italic; font-size: 0.85rem;
+      color: var(--sage-light); letter-spacing: 0.04em;
     }
-
-    .nav-links {
-      display: flex; list-style: none;
-      gap: 2rem; align-items: center;
-    }
-
+    .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
     .nav-links a {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.6);
-      text-decoration: none;
-      transition: color var(--tr);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(245,241,230,0.55); text-decoration: none;
+      transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--cream); }
-
     .nav-cta {
       border: 1px solid rgba(245,241,230,0.3) !important;
-      padding: 0.4rem 1.1rem;
-      color: var(--cream) !important;
+      padding: 0.4rem 1.1rem; color: var(--cream) !important;
     }
     .nav-cta:hover {
       background: rgba(245,241,230,0.08) !important;
-      border-color: var(--cream) !important;
+      border-color: rgba(245,241,230,0.6) !important;
     }
 
-    /* ── SECTION 1: LOGO HERO ── */
-    .hero-logo {
+    /* ═══════════════════════════════════════
+       SECTION 1 — COVER (PDF Page 1 style)
+    ═══════════════════════════════════════ */
+    .cover {
       position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: var(--forest);
+      padding: 80px 2rem 4rem;
+      text-align: center;
       overflow: hidden;
-      padding-top: 64px;
     }
-
-    .hero-logo::before {
+    /* subtle vignette to match the PDF's textured dark bg */
+    .cover::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(90deg, var(--forest) 50%, var(--cream) 50%);
+      background: radial-gradient(ellipse 80% 80% at 50% 40%, transparent 30%, rgba(5,10,7,0.55) 100%);
+      pointer-events: none;
     }
-
-    .hero-logo-img {
+    /* faint watermark text — matches PDF background pattern */
+    .cover::after {
+      content: 'ARCANOVA';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(5rem, 20vw, 18rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(245,241,230,0.018);
+      pointer-events: none;
+      user-select: none;
+    }
+    .cover-logo {
       position: relative; z-index: 1;
-      width: 100%; max-width: 860px;
-      padding: 0 2rem;
+      width: 100%; max-width: 480px;
+      margin-bottom: 3rem;
     }
+    .cover-logo img { width: 100%; height: auto; display: block; }
 
-    .hero-logo-img img {
-      width: 100%; height: auto; display: block;
-    }
-
-    .hero-logo-cta {
+    .cover-rule {
+      width: 44px; height: 1px;
+      background: rgba(245,241,230,0.3);
+      margin: 0 auto 1.5rem;
       position: relative; z-index: 1;
-      display: flex; gap: 1rem;
-      justify-content: center; flex-wrap: wrap;
-      margin-top: 2.5rem;
     }
-
+    .cover-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245,241,230,0.5);
+      margin-bottom: 0.6rem;
+      position: relative; z-index: 1;
+    }
+    .cover-location {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      color: rgba(245,241,230,0.45);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+      position: relative; z-index: 1;
+    }
+    .cover-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      color: rgba(245,241,230,0.25);
+      letter-spacing: 0.08em;
+      margin-bottom: 3rem;
+      position: relative; z-index: 1;
+    }
+    .cover-cta {
+      position: relative; z-index: 1;
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
     .btn-cream {
-      padding: 0.8rem 2rem;
-      background: var(--cream);
-      color: var(--forest);
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none; cursor: pointer;
-      transition: all var(--tr);
-      display: inline-block;
+      padding: 0.8rem 2rem; background: var(--cream); color: var(--forest);
+      font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer; transition: all 0.22s; display: inline-block;
     }
-    .btn-cream:hover {
-      background: white;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-      transform: translateY(-1px);
-    }
-
+    .btn-cream:hover { background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.2); transform: translateY(-1px); }
     .btn-ghost {
-      padding: 0.8rem 2rem;
-      background: transparent;
-      color: var(--cream);
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(245,241,230,0.4);
-      transition: all var(--tr);
-      display: inline-block;
+      padding: 0.8rem 2rem; background: transparent; color: var(--cream);
+      font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(245,241,230,0.35); transition: all 0.22s; display: inline-block;
     }
-    .btn-ghost:hover {
-      border-color: var(--cream);
-      background: rgba(245,241,230,0.06);
-    }
-
+    .btn-ghost:hover { border-color: var(--cream); background: rgba(245,241,230,0.06); }
     .scroll-cue {
       position: relative; z-index: 1;
-      margin-top: 3rem;
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.4);
+      margin-top: 3.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(245,241,230,0.3);
     }
-    .scroll-cue-line {
-      width: 1px; height: 44px;
-      background: linear-gradient(to bottom, rgba(245,241,230,0.4), transparent);
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(245,241,230,0.35), transparent);
       animation: lineDown 2s ease-in-out infinite;
     }
     @keyframes lineDown {
@@ -200,998 +187,590 @@
       50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
       100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
     }
-
-    /* ── SECTION 2: CONVICTION ── */
-    .conviction {
-      background: var(--cream);
-      color: var(--ink);
-      padding: 7rem 2.5rem;
-    }
-
-    .conviction-inner {
-      max-width: 920px; margin: 0 auto;
-    }
-
-    .kicker {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1.25rem;
-    }
-
-    .conviction h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--forest);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    .conviction-body {
-      font-size: 1.1rem;
-      line-height: 1.85;
-      color: var(--ink-soft);
-      max-width: 720px;
-      margin-bottom: 1.25rem;
-    }
-
-    .conviction-rule {
-      width: 44px; height: 2px;
-      background: var(--sage);
-      margin: 2.5rem 0;
-    }
-
-    .delivered-label {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 1rem;
-    }
-
-    .pill-row {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-    }
-
-    .pill {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: var(--forest);
-      border: 1px solid rgba(18,42,27,0.3);
-      border-radius: 100px;
-      padding: 0.5rem 1.1rem;
-      transition: all var(--tr);
-    }
-    .pill:hover {
-      background: var(--forest);
-      color: var(--cream);
-      border-color: var(--forest);
-    }
-
-    /* ── SECTION 3: HERO CONTENT (from hero web section) ── */
-    .hero-content {
-      position: relative;
-      background: radial-gradient(ellipse at 28% 18%, var(--forest-mid) 0%, #0E1F14 48%, #050A07 100%);
-      padding: 7rem 2.5rem 6rem;
-      overflow: hidden;
+    .cover-confidential {
+      position: absolute; bottom: 1.5rem; left: 0; right: 0;
       text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(245,241,230,0.15);
     }
 
-    /* CSS grain effect */
-    .hero-content::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-      mix-blend-mode: overlay;
-      opacity: 0.12;
-      pointer-events: none;
-    }
-
-    .hero-content-inner {
-      max-width: 780px; margin: 0 auto;
-      position: relative; z-index: 2;
-    }
-
-    .hero-content-tagline {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--sage-light);
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-content h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      font-weight: 600;
-      line-height: 1.18;
-      color: #FFFFFF;
-      margin-bottom: 2rem;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-content-sub {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #D9D9CE;
-      max-width: 620px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .hero-content-rule {
-      width: 44px; height: 1px;
-      background: rgba(245,241,230,0.25);
-      margin: 0 auto 3.5rem;
-    }
-
-    .hero-content-quote {
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: #AFC4A4;
-      max-width: 580px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .hero-content-close {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--sage-light);
-      margin-bottom: 2rem;
-      line-height: 1.4;
-    }
-
-    .hero-tags {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: 0.6rem;
-    }
-
-    .hero-tag {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      color: #CFE0C5;
-      border: 1px solid rgba(245,241,230,0.25);
-      border-radius: 100px;
-      padding: 0.5rem 1.1rem;
-      background: rgba(245,241,230,0.04);
-    }
-
-    /* ── SECTION 4: PROBLEM STATEMENT ── */
-    .problem {
-      position: relative;
-      background: var(--cream);
-      padding: 6rem 2.5rem 5.5rem;
-      overflow: hidden;
-    }
-
-    .problem-inner {
-      max-width: 940px; margin: 0 auto;
-      position: relative; z-index: 2;
-    }
-
-    .problem .kicker { color: #5C7A3E; }
-
-    .problem h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--forest);
-      max-width: 22ch;
-      margin-bottom: 1.75rem;
-      letter-spacing: -0.01em;
-    }
-
-    .problem-lead {
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--ink-soft);
-      max-width: 700px;
-      margin-bottom: 1.2rem;
-    }
-
-    .problem-rule {
-      width: 44px; height: 2px;
-      background: var(--sage);
-      margin: 2.5rem 0;
-    }
-
-    .stat-label-row {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--grey);
-      margin-bottom: 1.25rem;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-      gap: 0;
-      border-top: 1px solid #DCD5BD;
-    }
-
-    .stat {
-      padding: 1.75rem 1.5rem;
-      border-bottom: 1px solid #DCD5BD;
-      border-left: 2px solid var(--sage);
-    }
-
-    .stat-num {
-      font-family: var(--font-head);
-      font-size: clamp(1.75rem, 2.5vw, 2.2rem);
-      font-weight: 600;
-      color: var(--forest);
-      line-height: 1.05;
-      margin-bottom: 0.65rem;
-    }
-
-    .stat-caption {
-      font-family: var(--font-body);
-      font-size: 0.83rem;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      max-width: 24ch;
-      font-weight: 300;
-    }
-
-    .stat-sources {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      color: #9A9276;
-      margin-top: 1.5rem;
-      font-style: italic;
-    }
-
-    /* ── CLOSE BAND ── */
-    .close-band {
-      background: var(--forest);
-      padding: 5rem 2.5rem;
-      text-align: center;
-    }
-
-    .close-band-inner {
-      max-width: 720px; margin: 0 auto;
-    }
-
-    .close-line {
-      font-family: var(--font-head);
-      font-size: clamp(1.4rem, 2.8vw, 2rem);
-      font-weight: 500;
-      line-height: 1.5;
-      color: var(--cream);
-    }
-
-    .close-line em {
-      font-style: italic;
-      color: var(--sage-light);
-    }
-
-    /* ── SECTION 5: WHO WE'RE BUILT FOR ── */
-    .built-for {
-      background: var(--cream-deep);
-      padding: 7rem 2.5rem;
-    }
-
-    .built-for-inner {
-      max-width: 940px; margin: 0 auto;
-    }
-
-    .built-for h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--forest);
-      margin-bottom: 3rem;
-      letter-spacing: -0.01em;
-    }
-
-    .audience-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .audience-row {
-      display: grid;
-      grid-template-columns: 3rem 14rem 1fr;
-      align-items: start;
-      padding: 1.25rem 0;
-      border-top: 1px solid #DCD5BD;
-      gap: 1.5rem;
-    }
-
-    .audience-row:last-child { border-bottom: 1px solid #DCD5BD; }
-
-    .a-num {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: var(--sage);
-      letter-spacing: 0.08em;
-      padding-top: 0.15rem;
-    }
-
-    .a-name {
-      font-family: var(--font-head);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--forest);
-    }
-
-    .a-desc {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      font-weight: 400;
-    }
-
-    .built-for-footer {
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--sage);
-      margin-top: 2.5rem;
-    }
-
-    /* ── SECTION 6: TWO ENGINES ── */
-    .two-engines {
-      background: var(--forest);
-      padding: 7rem 2.5rem;
-    }
-
-    .two-engines-inner {
-      max-width: 940px; margin: 0 auto;
-    }
-
-    .two-engines h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--cream);
-      margin-bottom: 0.75rem;
-    }
-
-    .two-engines .section-sub {
-      font-size: 1rem;
-      color: rgba(245,241,230,0.6);
-      margin-bottom: 3.5rem;
-      max-width: 560px;
-      line-height: 1.75;
-    }
-
-    .engines-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .engine-card {
-      border: 1px solid var(--border-d);
-      padding: 2.25rem 2rem;
-      transition: border-color var(--tr);
-    }
-    .engine-card:hover { border-color: rgba(134,164,90,0.4); }
-
-    .engine-pathway {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1rem;
-    }
-
-    .engine-title {
-      font-family: var(--font-head);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 0.85rem;
-    }
-
-    .engine-desc {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: rgba(245,241,230,0.65);
-    }
-
-    .engine-label {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.4);
-      margin-bottom: 1rem;
-    }
-
-    .loop-diagram {
-      border: 1px solid var(--border-d);
-      padding: 1.75rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .loop-node {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.5);
-      border: 1px solid var(--border-d);
-      padding: 0.5rem 1.25rem;
-    }
-
-    .loop-arrow {
-      font-size: 0.9rem;
-      color: var(--sage);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2rem;
-    }
-
-    .loop-arrow span {
-      font-family: var(--font-body);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-
-    .rnd-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .rnd-tag {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      color: rgba(245,241,230,0.55);
-      border: 1px solid var(--border-d);
-      border-radius: 100px;
-      padding: 0.4rem 0.9rem;
-    }
-
-    /* ── SECTION 7: TECHNOLOGY ── */
-    .technology {
-      background: var(--cream);
-      padding: 7rem 2.5rem;
-    }
-
-    .technology-inner {
-      max-width: 940px; margin: 0 auto;
-    }
-
-    .technology h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--forest);
-      margin-bottom: 0.75rem;
-    }
-
-    .technology .section-sub {
-      font-size: 1rem;
-      color: var(--ink-soft);
-      margin-bottom: 3.5rem;
-      max-width: 560px;
-      line-height: 1.75;
-      font-weight: 300;
-    }
-
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid #DCD5BD;
-      margin-bottom: 0;
-    }
-
-    .tech-card {
-      padding: 2.25rem 2rem;
-      border-right: 1px solid #DCD5BD;
-      transition: background var(--tr);
-    }
-    .tech-card:last-child { border-right: none; }
-    .tech-card:hover { background: var(--cream-deep); }
-
-    .tc-num {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 1.25rem;
-    }
-
-    .tc-title {
-      font-family: var(--font-head);
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: var(--forest);
-      margin-bottom: 0.35rem;
-    }
-
-    .tc-spec {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--sage);
-      margin-bottom: 0.85rem;
-      text-transform: uppercase;
-    }
-
-    .tc-desc {
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: var(--ink-soft);
-      font-family: var(--font-body);
-      font-weight: 300;
-    }
-
-    .outputs-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border: 1px solid #DCD5BD;
-      border-top: none;
-    }
-
-    .out-cell {
-      padding: 1.5rem;
-      border-right: 1px solid #DCD5BD;
-      background: var(--cream-deep);
-    }
-    .out-cell:last-child { border-right: none; }
-
-    .out-name {
-      font-family: var(--font-head);
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--forest);
-      margin-bottom: 0.25rem;
-    }
-
-    .out-type {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.45rem;
-    }
-
-    .out-use {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      color: var(--grey);
-      font-weight: 300;
-    }
-
-    /* ── SECTION 8: PLATFORM ── */
-    .platform {
-      background: var(--forest-deep);
-      padding: 7rem 2.5rem;
-    }
-
-    .platform-inner {
-      max-width: 940px; margin: 0 auto;
-    }
-
-    .platform h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 0.75rem;
-    }
-
-    .platform .section-sub {
-      font-size: 1rem;
-      color: rgba(245,241,230,0.55);
-      margin-bottom: 3.5rem;
-      max-width: 540px;
-      line-height: 1.75;
-    }
-
-    .feats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border-d);
-      border: 1px solid var(--border-d);
-    }
-
-    .feat {
-      padding: 2.25rem 2rem;
-      background: var(--forest-deep);
-      transition: background var(--tr);
-    }
-    .feat:hover { background: rgba(245,241,230,0.03); }
-
-    .feat-num {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--sage-light);
-      margin-bottom: 1.25rem;
-    }
-
-    .feat-title {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 0.65rem;
-    }
-
-    .feat-desc {
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: rgba(245,241,230,0.55);
-      line-height: 1.8;
-    }
-
-    /* ── SECTION 9: MISSION / VISION SLIDER ── */
+    /* ═══════════════════════════════════════
+       SECTION 2 — MISSION / VISION SLIDER
+    ═══════════════════════════════════════ */
     .mv-section {
-      background: var(--forest);
+      background: var(--forest-deep);
       padding: 7rem 2.5rem;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .mv-section::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(134,164,90,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(134,164,90,0.05) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .mv-inner {
-      max-width: 800px; margin: 0 auto;
-      text-align: center;
-      position: relative; z-index: 1;
+      max-width: 780px; margin: 0 auto;
+      text-align: center; position: relative; z-index: 1;
     }
-
-    .mv-label {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 3rem;
+    .mv-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 3rem;
     }
-
-    .mv-slider {
-      position: relative;
-      min-height: 280px;
-    }
-
+    .mv-slider { position: relative; min-height: 240px; }
     .mv-slide {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
+      position: absolute; top: 0; left: 0; right: 0;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
       pointer-events: none;
     }
-
     .mv-slide.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-      position: relative;
+      opacity: 1; transform: translateY(0);
+      pointer-events: auto; position: relative;
     }
-
     .mv-slide-label {
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sage-light);
-      margin-bottom: 1.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--sage-light); margin-bottom: 1.5rem;
     }
-
     .mv-slide-text {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--cream);
+      font-family: 'EB Garamond', serif; font-style: italic;
+      font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 400;
+      line-height: 1.72; color: var(--cream);
     }
-
-    .mv-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 2.5rem;
-    }
-
+    .mv-dots { display: flex; justify-content: center; gap: 0.6rem; margin-top: 2.5rem; }
     .mv-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(245,241,230,0.2);
-      border: none; cursor: pointer; padding: 0;
-      transition: background var(--tr);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(245,241,230,0.2); border: none; cursor: pointer; padding: 0;
+      transition: background 0.22s;
     }
     .mv-dot.active { background: var(--sage-light); }
+    .mv-rule { width: 44px; height: 1px; background: rgba(245,241,230,0.12); margin: 2rem auto; }
+    .mv-footer { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: rgba(245,241,230,0.35); letter-spacing: 0.12em; }
 
-    .mv-rule {
-      width: 44px; height: 1px;
-      background: rgba(245,241,230,0.15);
-      margin: 2rem auto;
+    /* ═══════════════════════════════════════
+       SECTION 3 — HERO (exact from Hero Web Section.html)
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      background: radial-gradient(ellipse at 28% 18%, #1B3A24 0%, #0E1F14 48%, #050A07 100%);
+      padding: 128px 24px 110px;
+      overflow: hidden; text-align: center;
+    }
+    .grain {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 320px 320px;
+      mix-blend-mode: overlay; opacity: 0.45; pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; }
+    .hero-tagline {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 12px; letter-spacing: 6px; text-transform: uppercase;
+      color: #9CB876; margin-bottom: 26px;
+    }
+    .hero-headline {
+      font-size: clamp(36px, 6vw, 58px); font-weight: 600; line-height: 1.18;
+      color: #FFFFFF; margin-bottom: 30px; letter-spacing: -0.01em;
+    }
+    .hero-sub {
+      font-size: 18px; line-height: 1.75;
+      color: #D9D9CE; max-width: 600px; margin: 0 auto 56px;
+    }
+    .hero-rule {
+      width: 54px; height: 1px; background: rgba(245,241,230,0.3);
+      margin: 0 auto 56px;
+    }
+    .hero-quote {
+      font-style: italic; font-size: 16.5px; line-height: 1.8;
+      color: #AFC4A4; max-width: 560px; margin: 0 auto 52px;
+    }
+    .hero-close { font-size: 24px; font-weight: 600; color: #9CB876; margin-bottom: 34px; line-height: 1.4; }
+    .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .hero-tag {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 11.5px; letter-spacing: 0.5px;
+      color: #CFE0C5; border: 1px solid rgba(245,241,230,0.3); border-radius: 18px;
+      padding: 8px 18px; background: rgba(245,241,230,0.04);
     }
 
-    .mv-tagline {
-      font-family: var(--font-head);
-      font-size: 1rem;
-      color: rgba(245,241,230,0.4);
-      letter-spacing: 0.12em;
+    /* ═══════════════════════════════════════
+       SECTION 4 — WHAT ARCANOVA SELLS (PDF page 2)
+    ═══════════════════════════════════════ */
+    .conviction {
+      background: var(--cream); color: var(--ink);
+      padding: 96px 24px 88px; position: relative; overflow: hidden;
+    }
+    .conviction-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+    .kicker-light {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
+      color: #5C7A3E; margin-bottom: 18px;
+    }
+    .conviction h2 {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.15;
+      color: var(--forest); margin-bottom: 32px; letter-spacing: -0.01em;
+    }
+    .conviction-body {
+      font-size: 19px; line-height: 1.7; color: var(--ink-soft);
+      max-width: 700px; margin-bottom: 20px; font-weight: 400;
+    }
+    .conviction-rule { width: 54px; height: 2px; background: var(--sage); margin: 40px 0; }
+    .delivered-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--grey); margin-bottom: 20px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: var(--forest); border: 1px solid rgba(18,42,27,0.35);
+      border-radius: 100px; padding: 8px 20px;
+      transition: all 0.2s; cursor: default;
+    }
+    .pill:hover { background: var(--forest); color: var(--cream); }
+    .conviction-footnote {
+      font-style: italic; font-size: 15px; color: var(--grey);
+      margin-top: 56px; padding-top: 24px;
+      border-top: 1px solid var(--border-l);
+      max-width: 600px;
     }
 
-    /* ── SECTION 10: CONTACT ── */
+    /* ═══════════════════════════════════════
+       SECTION 5 — WHO WE ARE BUILT FOR (PDF page 3)
+    ═══════════════════════════════════════ */
+    .built-for {
+      background: var(--cream-deep); color: var(--ink);
+      padding: 96px 24px 88px;
+    }
+    .built-for-inner { max-width: 920px; margin: 0 auto; }
+    .built-for h2 {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 600; line-height: 1.2;
+      color: var(--forest); margin-bottom: 48px; letter-spacing: -0.01em;
+    }
+    .audience-row {
+      display: grid; grid-template-columns: 60px 220px 1fr;
+      align-items: start; padding: 22px 0;
+      border-top: 1px solid var(--border-l); gap: 0;
+    }
+    .audience-row:last-of-type { border-bottom: 1px solid var(--border-l); }
+    .a-num {
+      font-family: 'Inter', sans-serif; font-size: 12px;
+      color: #86A45A; letter-spacing: 0.08em; padding-top: 3px;
+    }
+    .a-name {
+      font-size: 18px; font-weight: 600; color: var(--forest);
+      padding-right: 20px;
+    }
+    .a-desc {
+      font-size: 17px; line-height: 1.65; color: var(--ink-soft);
+    }
+    .built-for-footer {
+      font-style: italic; font-size: 16px; color: var(--sage);
+      margin-top: 40px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 6 — THE PROBLEM / WASABI (PDF page 4)
+    ═══════════════════════════════════════ */
+    .problem-brand {
+      background: var(--cream); color: var(--ink);
+      padding: 96px 24px 88px;
+    }
+    .problem-brand-inner { max-width: 920px; margin: 0 auto; }
+    .problem-brand h2 {
+      font-size: clamp(30px, 4.5vw, 48px); font-weight: 600; line-height: 1.2;
+      color: var(--forest); margin-bottom: 30px; letter-spacing: -0.01em;
+      max-width: 24ch;
+    }
+    .problem-brand-lead {
+      font-size: 18px; line-height: 1.75; color: var(--ink-soft);
+      max-width: 700px; margin-bottom: 40px;
+    }
+    .wasabi-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin: 48px 0;
+    }
+    .w-stat {
+      padding: 28px 24px;
+      border-left: 2px solid var(--sage);
+      border-right: 1px solid var(--border-l);
+    }
+    .w-stat:last-child { border-right: none; }
+    .w-stat-num {
+      font-size: clamp(28px, 3vw, 36px); font-weight: 600;
+      color: var(--forest); line-height: 1.0; margin-bottom: 10px;
+    }
+    .w-stat-cap {
+      font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55;
+      color: var(--ink-soft); max-width: 22ch;
+    }
+    .problem-brand-body {
+      font-size: 18px; line-height: 1.75; color: var(--ink-soft);
+      max-width: 700px; margin-bottom: 20px;
+    }
+    .problem-brand-bold {
+      font-size: 18px; line-height: 1.6; font-weight: 600;
+      color: var(--forest); max-width: 700px; margin-top: 32px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 7 — MARKET STATS (from Problem Statement.html)
+    ═══════════════════════════════════════ */
+    .problem {
+      position: relative; background: var(--cream-deep);
+      padding: 96px 24px 88px; overflow: hidden;
+    }
+    .problem-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+    .problem .kicker-light { margin-bottom: 18px; }
+    .headline {
+      font-size: clamp(34px, 5vw, 54px); font-weight: 600; line-height: 1.18;
+      color: var(--forest); max-width: 18ch; margin-bottom: 30px; letter-spacing: -0.01em;
+    }
+    .lead {
+      font-size: 19px; line-height: 1.7; color: var(--ink-soft);
+      max-width: 680px; margin-bottom: 18px;
+    }
+    .lead.tight { margin-bottom: 0; }
+    .rule { width: 54px; height: 2px; background: var(--sage); margin: 40px 0; }
+    .stat-label-row {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--grey); margin-bottom: 22px;
+    }
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; border-top: 1px solid var(--border-l);
+    }
+    .stat {
+      padding: 26px 24px;
+      border-bottom: 1px solid var(--border-l);
+      border-left: 2px solid var(--sage);
+    }
+    .stat-num {
+      font-size: clamp(28px, 3vw, 34px); font-weight: 600;
+      color: var(--forest); line-height: 1.05; margin-bottom: 10px;
+    }
+    .stat-caption {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); max-width: 24ch;
+    }
+    .sources {
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px; color: #9A9276; margin-top: 24px; font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════
+       CLOSE BAND (from Problem Statement.html)
+    ═══════════════════════════════════════ */
+    .close-band {
+      position: relative; background: var(--forest);
+      padding: 72px 24px; text-align: center; overflow: hidden;
+    }
+    .close-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 2; }
+    .close-line {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(24px, 3.4vw, 32px); font-weight: 500;
+      line-height: 1.4; color: #F5F1E6;
+    }
+    .close-line em { font-style: italic; color: var(--sage-light); }
+
+    /* ═══════════════════════════════════════
+       SECTION 8 — TWO ENGINES (PDF page 5)
+    ═══════════════════════════════════════ */
+    .engines {
+      background: var(--cream); color: var(--ink);
+      padding: 96px 24px 88px;
+    }
+    .engines-inner { max-width: 920px; margin: 0 auto; }
+    .engines h2 {
+      font-size: clamp(30px, 4.5vw, 48px); font-weight: 600; line-height: 1.15;
+      color: var(--forest); margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .engines-sub {
+      font-size: 18px; line-height: 1.7; color: var(--ink-soft);
+      max-width: 680px; margin-bottom: 40px;
+    }
+    .engine-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 8px;
+    }
+    .engine-title {
+      font-size: 26px; font-weight: 600; color: var(--forest);
+      margin-bottom: 10px;
+    }
+    .engine-desc-main {
+      font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 680px;
+      margin-bottom: 32px;
+    }
+    .pathways-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 40px;
+    }
+    .pathway-card {
+      border: 1px solid var(--border-l);
+      padding: 28px 24px; background: #FDFAF3;
+    }
+    .pathway-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 10px;
+    }
+    .pathway-title {
+      font-size: 22px; font-weight: 600; color: var(--forest);
+      margin-bottom: 12px; line-height: 1.25;
+    }
+    .pathway-desc {
+      font-size: 16px; line-height: 1.7; color: var(--ink-soft);
+    }
+    .loop-diagram {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin-bottom: 40px; border: 1px solid var(--border-l);
+      padding: 24px; flex-wrap: wrap;
+    }
+    .loop-node {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-soft); border: 1px solid var(--border-l);
+      padding: 10px 24px;
+    }
+    .loop-arrows {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 0 24px;
+    }
+    .loop-arrows span {
+      font-family: 'Inter', sans-serif; font-size: 10px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--sage);
+    }
+    .engines-divider { border: none; border-top: 1px solid var(--border-l); margin: 40px 0; }
+    .rnd-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .rnd-tag {
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: var(--forest); border: 1px solid rgba(18,42,27,0.3);
+      border-radius: 100px; padding: 7px 18px;
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION 9 — CONTACT
+    ═══════════════════════════════════════ */
     .contact {
-      background: var(--cream);
-      padding: 7rem 2.5rem;
+      background: var(--cream); color: var(--ink);
+      padding: 96px 24px 88px;
     }
-
     .contact-inner {
-      max-width: 940px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
+      max-width: 920px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
     }
-
     .contact h2 {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--forest);
-      margin-bottom: 1.25rem;
+      font-size: clamp(30px, 4vw, 46px); font-weight: 600; line-height: 1.2;
+      color: var(--forest); margin-bottom: 20px; letter-spacing: -0.01em;
     }
-
     .contact-info-text {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--ink-soft);
-      font-weight: 300;
-      margin-bottom: 2rem;
+      font-size: 18px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 32px;
     }
-
-    .contact-details {
-      display: flex; flex-direction: column; gap: 0.75rem;
-    }
-
-    .c-row {
-      display: flex; align-items: baseline; gap: 1rem;
-    }
-
+    .contact-details { display: flex; flex-direction: column; gap: 12px; }
+    .c-row { display: flex; align-items: baseline; gap: 16px; }
     .c-label {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--sage);
-      width: 80px; flex-shrink: 0;
+      font-family: 'Inter', sans-serif; font-size: 10px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--sage); width: 100px; flex-shrink: 0;
     }
-
-    .c-val {
-      font-size: 0.95rem;
-      color: var(--forest);
-      text-decoration: none;
-    }
+    .c-val { font-size: 16px; color: var(--forest); text-decoration: none; }
     a.c-val:hover { color: var(--sage); }
-
-    .form-stack {
-      display: flex; flex-direction: column; gap: 1rem;
-    }
-
-    .form-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-    }
-
-    .fg { display: flex; flex-direction: column; gap: 0.4rem; }
-    .fg.full { grid-column: 1 / -1; }
-
+    .form-stack { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
     label {
-      font-family: var(--font-body);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--grey);
+      font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey);
     }
-
     input, textarea, select {
-      background: white;
-      border: 1px solid #DCD5BD;
-      padding: 0.75rem 1rem;
-      color: var(--ink);
-      font-family: var(--font-head);
-      font-size: 1rem;
-      outline: none;
-      width: 100%;
-      transition: border-color var(--tr);
-      border-radius: 0;
-      appearance: none;
+      background: white; border: 1px solid var(--border-l);
+      padding: 0.75rem 1rem; color: var(--ink);
+      font-family: 'EB Garamond', serif; font-size: 1rem;
+      outline: none; width: 100%; transition: border-color 0.2s;
+      border-radius: 0; appearance: none;
     }
     input::placeholder, textarea::placeholder { color: #C0B89A; }
     input:focus, textarea:focus, select:focus { border-color: var(--sage); }
     textarea { resize: vertical; min-height: 110px; }
-
     .btn-submit {
-      padding: 0.85rem 2.5rem;
-      background: var(--forest);
-      color: var(--cream);
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background var(--tr);
-      align-self: flex-start;
+      padding: 0.85rem 2.5rem; background: var(--forest); color: var(--cream);
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; border: none;
+      cursor: pointer; transition: background 0.2s; align-self: flex-start;
     }
     .btn-submit:hover { background: var(--forest-mid); }
-
     .form-note {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      color: var(--grey);
-      margin-top: 0.5rem;
-      font-style: italic;
+      font-family: 'Inter', sans-serif; font-size: 0.68rem;
+      color: var(--grey); font-style: italic;
     }
 
-    /* ── FOOTER ── */
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
     footer {
       background: var(--forest-deep);
       border-top: 1px solid var(--border-d);
-      padding: 2.5rem 2.5rem;
+      padding: 2.5rem;
     }
-
     .footer-inner {
-      max-width: 940px; margin: 0 auto;
-      display: flex; align-items: center;
-      justify-content: space-between;
+      max-width: 920px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1.5rem;
     }
-
     .footer-brand {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cream);
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream);
     }
-
     .footer-tagline {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: 0.85rem;
-      color: var(--sage-light);
-      margin-top: 0.2rem;
+      font-family: 'EB Garamond', serif; font-style: italic;
+      font-size: 0.85rem; color: var(--sage-light); margin-top: 3px;
     }
-
-    .footer-links {
-      display: flex; gap: 2rem; list-style: none;
-    }
-
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
     .footer-links a {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.4);
-      text-decoration: none;
-      transition: color var(--tr);
+      font-family: 'Inter', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(245,241,230,0.35); text-decoration: none; transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--cream); }
-
     .footer-copy {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      color: rgba(245,241,230,0.2);
+      font-family: 'Inter', sans-serif; font-size: 0.65rem;
+      color: rgba(245,241,230,0.18);
     }
 
-    /* ── UTILITIES ── */
-    .section-divider {
-      width: 44px; height: 2px;
-      background: var(--sage);
-      margin-bottom: 2rem;
-    }
-
-    .section-divider.light {
-      background: rgba(245,241,230,0.2);
-    }
-
-    /* ── RESPONSIVE ── */
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
     @media (max-width: 900px) {
-      .engines-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .tech-grid { grid-template-columns: 1fr; }
-      .outputs-row { grid-template-columns: 1fr 1fr; }
-      .feats-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .pathways-grid { grid-template-columns: 1fr; }
+      .wasabi-stats { grid-template-columns: 1fr; }
+      .w-stat { border-right: none; }
     }
-
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links, .nav-tagline { display: none; }
-      section, .problem, .conviction, .contact, .two-engines,
-      .built-for, .technology, .platform, .mv-section,
-      .close-band, .hero-content { padding: 4.5rem 1.25rem; }
-      .hero-logo { padding-top: 60px; }
-      .feats-grid, .tech-grid { grid-template-columns: 1fr; }
-      .outputs-row, .stat-grid { grid-template-columns: 1fr; }
+      .hero { padding: 96px 20px 80px; }
+      .hero-sub, .hero-rule, .hero-quote { margin-bottom: 44px; }
+      .audience-row { grid-template-columns: 44px 1fr; }
+      .a-desc { grid-column: 2; margin-top: 6px; }
       .form-row { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; }
-      .audience-row { grid-template-columns: 2.5rem 1fr; }
-      .a-desc { grid-column: 2; }
+      .loop-diagram { flex-direction: column; gap: 12px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
 <nav>
-  <a href="#" class="nav-logo">ArcaNova</a>
+  <a href="#cover" class="nav-logo">ArcaNova</a>
   <span class="nav-tagline">The Season Is Now</span>
   <ul class="nav-links">
-    <li><a href="#conviction">About</a></li>
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#engines">Our Approach</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#problem-section">The Problem</a></li>
+    <li><a href="#approach">Our Approach</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
 
-<!-- ── SECTION 1: LOGO HERO ── -->
-<section class="hero-logo">
-  <div class="hero-logo-img">
-    <img src="logo.png" alt="ArcaNova — The Season Is Now · Clermont-Ferrand · Paris · France">
+<!-- ══════════════════════════════════════════
+     SECTION 1 — COVER  (PDF Page 1)
+══════════════════════════════════════════ -->
+<section class="cover" id="cover">
+  <div class="cover-logo">
+    <img src="logo.png" alt="ArcaNova — Urban Biotech Farming">
   </div>
-  <div class="hero-logo-cta">
-    <a href="#conviction" class="btn-cream">Discover More</a>
+
+  <div class="cover-rule"></div>
+  <div class="cover-label">Brand Story</div>
+  <div class="cover-location">Clermont-Ferrand &nbsp;·&nbsp; Paris &nbsp;·&nbsp; France</div>
+  <div class="cover-date">June 2026</div>
+
+  <div class="cover-cta">
+    <a href="#about" class="btn-cream">Discover Our Story</a>
     <a href="#contact" class="btn-ghost">Get in Touch</a>
   </div>
+
   <div class="scroll-cue">
-    <div class="scroll-cue-line"></div>
+    <div class="scroll-line"></div>
     <span>Scroll</span>
+  </div>
+
+  <div class="cover-confidential">For Partner and Investor Discussion</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — MISSION / VISION SLIDER
+══════════════════════════════════════════ -->
+<section class="mv-section">
+  <div class="mv-inner">
+    <div class="mv-kicker">Our Purpose</div>
+
+    <div class="mv-slider" id="mvSlider">
+      <div class="mv-slide active" id="slide-0">
+        <div class="mv-slide-label">Mission</div>
+        <p class="mv-slide-text">"To decode, cultivate, and commercialize the world's most challenging specialty crops through science-led controlled-environment agriculture, transforming cultivation knowledge into a scalable and enduring source of value."</p>
+      </div>
+      <div class="mv-slide" id="slide-1">
+        <div class="mv-slide-label">Vision</div>
+        <p class="mv-slide-text">"A world where exceptional crops are no longer constrained by climate, geography, or seasonality, but can be grown locally, reliably, and at their highest potential wherever they are needed."</p>
+      </div>
+    </div>
+
+    <div class="mv-dots">
+      <button class="mv-dot active" data-slide="0" aria-label="Mission"></button>
+      <button class="mv-dot" data-slide="1" aria-label="Vision"></button>
+    </div>
+
+    <div class="mv-rule"></div>
+    <div class="mv-footer">Clermont-Ferrand &nbsp;·&nbsp; Paris &nbsp;·&nbsp; France</div>
   </div>
 </section>
 
-<!-- ── SECTION 2: CONVICTION ── -->
-<section id="conviction" class="conviction">
+<!-- ══════════════════════════════════════════
+     SECTION 3 — HERO  (from ArcaNova Hero Web Section.html)
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="grain"></div>
+  <div class="hero-inner">
+    <div class="hero-tagline">The Season Is Now</div>
+    <h1 class="hero-headline">Precision-Grown.<br>Scientifically Engineered.</h1>
+    <p class="hero-sub">ArcaNova builds controlled-environment cultivation systems for high-value specialty crops — combining plant biotechnology, precision engineering, and circular agriculture to grow what conventional farming cannot. We serve premium buyers, researchers, and partners seeking reliable, science-backed quality, year-round, regardless of climate.</p>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-quote">Not crops. Not containers. Not technology. At the deepest level, we sell conviction with roots — the assurance that limits can be challenged, redesigned, and broken, that scarcity can be solved, that even in a changing world, life can still be grown. Anywhere.</p>
+
+    <div class="hero-close">The future should be grown, not sourced.</div>
+
+    <div class="hero-tags">
+      <div class="hero-tag">Local</div>
+      <div class="hero-tag">Verified</div>
+      <div class="hero-tag">Circular</div>
+      <div class="hero-tag">Protocol-led</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — WHAT ARCANOVA SELLS  (PDF page 2)
+══════════════════════════════════════════ -->
+<section class="conviction" id="about">
   <div class="conviction-inner">
-    <div class="kicker">What ArcaNova Sells</div>
+    <div class="kicker-light">What ArcaNova Sells</div>
     <h2>ArcaNova sells conviction.</h2>
-    <div class="section-divider"></div>
-    <p class="conviction-body">The conviction that we do not have to accept things just because they have always been that way. That good food should not depend on luck, weather, distance, or season. That a chef should never have to say "we cannot get it."</p>
-    <p class="conviction-body">That a country should not have to depend on someone far away to feed its people. That farmers, scientists, and builders can work together to build something cleaner, closer, and more reliable. That a wasted grape skin, a spent lavender stalk, or a forgotten root pulp does not have to stay waste, when it can become food.</p>
+
+    <p class="conviction-body">The conviction that we do not have to accept things just because they have always been that way.</p>
+    <p class="conviction-body">That good food should not depend on luck, weather, distance, or season. That a chef should never have to say "we cannot get it." That a country should not have to depend on someone far away to feed its people. That farmers, scientists, and builders can work together to build something cleaner, closer, and more reliable. That a wasted grape skin, a spent lavender stalk, or a forgotten root pulp does not have to stay waste, when it can become food.</p>
+
     <div class="conviction-rule"></div>
+
     <div class="delivered-label">Delivered Through</div>
     <div class="pill-row">
       <span class="pill">The Crops</span>
@@ -1199,74 +778,19 @@
       <span class="pill">Substrate Science</span>
       <span class="pill">Bioeconomy Innovation</span>
     </div>
+
+    <p class="conviction-footnote">These are how we deliver on that conviction — they are not the reason it matters.</p>
   </div>
 </section>
 
-<!-- ── SECTION 3: HERO CONTENT ── -->
-<section class="hero-content">
-  <div class="hero-content-inner">
-    <div class="hero-content-tagline">The Season Is Now</div>
-    <h2>Precision-Grown.<br>Scientifically Engineered.</h2>
-    <p class="hero-content-sub">ArcaNova builds controlled-environment cultivation systems for high-value specialty crops — combining plant biotechnology, precision engineering, and circular agriculture to grow what conventional farming cannot. We serve premium buyers, researchers, and partners seeking reliable, science-backed quality, year-round, regardless of climate.</p>
-    <div class="hero-content-rule"></div>
-    <p class="hero-content-quote">Not crops. Not containers. Not technology. At the deepest level, we sell conviction with roots — the assurance that limits can be challenged, redesigned, and broken, that scarcity can be solved, that even in a changing world, life can still be grown. Anywhere.</p>
-    <div class="hero-content-close">The future should be grown, not sourced.</div>
-    <div class="hero-tags">
-      <span class="hero-tag">Local</span>
-      <span class="hero-tag">Verified</span>
-      <span class="hero-tag">Circular</span>
-      <span class="hero-tag">Protocol-led</span>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 4: PROBLEM STATEMENT ── -->
-<section id="problem" class="problem">
-  <div class="problem-inner">
-    <div class="kicker">The Problem We Exist to Solve</div>
-    <h2>Premium shouldn't mean fragile.</h2>
-    <p class="problem-lead">Premium buyers — chefs, specialty retailers, wellness and nutraceutical brands — consistently struggle to source high-value specialty crops that meet real standards of freshness, authenticity, and quality. Conventional agriculture and standard greenhouses are constrained by climate, geography, and long, fragile supply chains.</p>
-    <p class="problem-lead">The result is produce that travels too far, arrives too late, or simply isn't authentic to begin with. Europe's appetite for premium, high-specialty crops is growing far faster than Europe's ability to grow them.</p>
-    <div class="problem-rule"></div>
-    <div class="stat-label-row">Why This Gap Is Widening</div>
-    <div class="stat-grid">
-      <div class="stat">
-        <div class="stat-num">€28B</div>
-        <div class="stat-caption">Lost by European farms to extreme weather every year — rising as climate volatility increases</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">45%</div>
-        <div class="stat-caption">Of the world's fresh produce is lost or wasted before it reaches a plate</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">76%</div>
-        <div class="stat-caption">Of buyers say sourcing transparency now directly shapes what they purchase</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">$45B</div>
-        <div class="stat-caption">Projected size of the food traceability market by 2034, up from $13B in 2024</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">$140B+</div>
-        <div class="stat-caption">Size of Europe's nutraceuticals market in 2025 — nearly doubling by 2035</div>
-      </div>
-    </div>
-    <div class="stat-sources">Sources: European Environment Agency / EIB–EPRS (2025); FAO; Food Industry Association (FMI); Global Market Insights; Precedence Research.</div>
-  </div>
-</section>
-
-<!-- Close Band -->
-<div class="close-band">
-  <div class="close-band-inner">
-    <div class="close-line">If you can't trace it, you can't promise it. <em>ArcaNova is built for buyers who refuse to compromise on either.</em></div>
-  </div>
-</div>
-
-<!-- ── SECTION 5: WHO WE'RE BUILT FOR ── -->
+<!-- ══════════════════════════════════════════
+     SECTION 5 — WHO WE ARE BUILT FOR  (PDF page 3)
+══════════════════════════════════════════ -->
 <section class="built-for">
   <div class="built-for-inner">
-    <div class="kicker">Who We Are Built For</div>
-    <h2>Built for people who refuse<br>to settle for "not available."</h2>
+    <div class="kicker-light">Who We Are Built For</div>
+    <h2>Built for people who refuse to settle for "not available."</h2>
+
     <div class="audience-row">
       <span class="a-num">01</span>
       <span class="a-name">The Chef</span>
@@ -1292,41 +816,130 @@
       <span class="a-name">Circular Bioeconomy Partners</span>
       <span class="a-desc">Who want underutilized industrial byproducts turned into higher-value agriculture, not waste.</span>
     </div>
+
     <p class="built-for-footer">ArcaNova is built for people who believe the future should be grown, not imported.</p>
   </div>
 </section>
 
-<!-- ── SECTION 6: TWO ENGINES ── -->
-<section id="engines" class="two-engines">
-  <div class="two-engines-inner">
-    <div class="kicker">How We Close the Gap</div>
-    <h2>Two Engines, One Conviction</h2>
-    <p class="section-sub">ArcaNova closes Europe's premium crop supply gap through two interconnected engines — production and R&D, feeding each other in a continuous loop.</p>
+<!-- ══════════════════════════════════════════
+     SECTION 6 — THE PROBLEM WE EXIST TO SOLVE  (PDF page 4)
+══════════════════════════════════════════ -->
+<section class="problem-brand" id="problem-section">
+  <div class="problem-brand-inner">
+    <div class="kicker-light">The Problem We Exist to Solve</div>
+    <h2 class="problem-brand-h2" style="font-size:clamp(30px,4.5vw,48px);font-weight:600;line-height:1.2;color:var(--forest);margin-bottom:30px;letter-spacing:-0.01em;max-width:26ch;">Europe's appetite for premium, high-specialty crops is growing far faster than Europe's ability to grow them.</h2>
 
-    <div class="engines-grid">
-      <div class="engine-card">
-        <div class="engine-pathway">Engine One · Pathway A</div>
-        <div class="engine-title">Premium Microgreens &amp; Specialty Crops</div>
-        <p class="engine-desc">Precision-controlled CEA systems produce premium microgreens and specialty crops year-round, independent of weather or season — with wasabi and cordyceps next on the roadmap.</p>
+    <p class="problem-brand-lead">Genuine wasabi shows how extreme that gap has become. Commercial wasabi farming across the entire European continent produces well under ten metric tonnes a year, concentrated in a handful of farms in the UK, Switzerland, and the Azores. Fresh rhizomes lose quality quickly after harvest, making reliable local production essential — yet Europe remains near-totally dependent on imports from Japan, Taiwan, and New Zealand, at prices that put authentic wasabi out of reach for most kitchens.</p>
+
+    <div class="wasabi-stats">
+      <div class="w-stat">
+        <div class="w-stat-num">&lt;10t</div>
+        <div class="w-stat-cap">Total European wasabi production per year</div>
       </div>
-      <div class="engine-card">
-        <div class="engine-pathway">Engine One · Pathway B</div>
-        <div class="engine-title">Circular Mushroom Bioeconomy</div>
-        <p class="engine-desc">French industrial byproducts — lavender stalks, wine lees, sunflower hulls, chicory pulp — become substrate for premium mushrooms. Byproduct in, mushroom out, substrate returned to the land. Original work under formal IP protection in France.</p>
+      <div class="w-stat">
+        <div class="w-stat-num">&lt;24h</div>
+        <div class="w-stat-cap">ArcaNova's harvest-to-customer delivery target</div>
+      </div>
+      <div class="w-stat">
+        <div class="w-stat-num">~100,000t</div>
+        <div class="w-stat-cap">Mushrooms imported into Europe every year</div>
+      </div>
+    </div>
+
+    <p class="problem-brand-body">Specialty and functional mushrooms — shiitake, oyster, lion's mane, cordyceps — show rising demand across Europe, while domestic production stays constrained by labor, climate, cost, and substrate availability.</p>
+    <p class="problem-brand-body">At the same time, France generates large volumes of underutilized industrial byproducts every year. ArcaNova turns regional byproducts into high-performance cultivation substrates — enabling local mushroom production while cutting waste and transport, and supporting a circular bioeconomy.</p>
+
+    <p class="problem-brand-bold">This is not a temporary shortage. It is a structural one — and it is precisely the gap ArcaNova is built to close.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — MARKET STATS  (from ArcaNova Problem Statement Web Section.html)
+══════════════════════════════════════════ -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="kicker-light">The Problem</div>
+    <h2 class="headline">Premium shouldn't mean fragile.</h2>
+
+    <p class="lead">Premium buyers — chefs, specialty retailers, wellness and nutraceutical brands — consistently struggle to source high-value specialty crops that meet real standards of freshness, authenticity, and quality. Conventional agriculture and standard greenhouses are constrained by climate, geography, and long, fragile supply chains.</p>
+    <p class="lead tight">The result is produce that travels too far, arrives too late, or simply isn't authentic to begin with. Climate volatility and rising demand for traceable, sustainably produced food are now pushing buyers and policymakers toward local, resilient alternatives — alternatives that, until now, haven't existed at the quality level premium markets actually require.</p>
+
+    <div class="rule"></div>
+
+    <div class="stat-label-row">Why this gap is widening</div>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-num">€28B</div>
+        <div class="stat-caption">Lost by European farms to extreme weather every year — rising as climate volatility increases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">45%</div>
+        <div class="stat-caption">Of the world's fresh produce is lost or wasted before it reaches a plate</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">76%</div>
+        <div class="stat-caption">Of buyers say sourcing transparency now directly shapes what they purchase</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$45B</div>
+        <div class="stat-caption">Projected size of the food traceability market by 2034, up from $13B in 2024</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$140B+</div>
+        <div class="stat-caption">Size of Europe's nutraceuticals market in 2025 — nearly doubling by 2035</div>
+      </div>
+    </div>
+    <div class="sources">Sources: European Environment Agency / EIB–EPRS (2025); FAO; Food Industry Association (FMI); Global Market Insights; Precedence Research.</div>
+  </div>
+</section>
+
+<section class="close-band">
+  <div class="grain" style="opacity:0.5;mix-blend-mode:overlay;"></div>
+  <div class="close-inner">
+    <div class="close-line">If you can't trace it, you can't promise it. <em>ArcaNova is built for buyers who refuse to compromise on either.</em></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8 — TWO ENGINES  (PDF page 5)
+══════════════════════════════════════════ -->
+<section class="engines" id="approach">
+  <div class="engines-inner">
+    <div class="kicker-light">How We Close the Gap</div>
+    <h2>Two Engines, One Conviction</h2>
+    <p class="engines-sub">ArcaNova closes Europe's premium crop supply gap through two interconnected engines — production and R&amp;D, feeding each other in a continuous loop.</p>
+
+    <div class="engine-label">Engine One</div>
+    <div class="engine-title">Production Engine</div>
+    <p class="engine-desc-main">Commercial revenue through two pathways operating on ArcaNova's Controlled Environment Agriculture (CEA) platform.</p>
+
+    <div class="pathways-grid">
+      <div class="pathway-card">
+        <div class="pathway-kicker">Pathway A</div>
+        <div class="pathway-title">Premium Microgreens &amp; Specialty Crops</div>
+        <p class="pathway-desc">Precision-controlled CEA systems produce premium microgreens and specialty crops year-round, independent of weather or season — with wasabi and cordyceps next on the roadmap.</p>
+      </div>
+      <div class="pathway-card">
+        <div class="pathway-kicker">Pathway B</div>
+        <div class="pathway-title">Circular Mushroom Bioeconomy</div>
+        <p class="pathway-desc">French industrial byproducts — lavender stalks, wine lees, sunflower hulls, chicory pulp — become substrate for premium mushrooms. Byproduct in, mushroom out, substrate returned to the land. Original work under formal IP protection in France.</p>
       </div>
     </div>
 
     <div class="loop-diagram">
       <div class="loop-node">Production Engine</div>
-      <div class="loop-arrow">
+      <div class="loop-arrows">
         <span>Real-world data →</span>
         <span>← Improved protocols</span>
       </div>
       <div class="loop-node">R&amp;D Engine</div>
     </div>
 
-    <div class="engine-label">Engine Two — R&amp;D</div>
-    <p class="engine-desc" style="max-width:640px; color:rgba(245,241,230,0.65);">Working with academic, scientific, and industry partners, the R&amp;D Engine continuously improves crop performance and substrate formulations — insights that strengthen production, while production data accelerates research.</p>
+    <hr class="engines-divider">
+
+    <div class="engine-label">Engine Two</div>
+    <div class="engine-title">R&amp;D Engine</div>
+    <p class="engine-desc-main">Working with academic, scientific, and industry partners, the R&amp;D Engine continuously improves crop performance and substrate formulations — insights that strengthen production, while production data accelerates research.</p>
     <div class="rnd-tags">
       <span class="rnd-tag">Crop Performance</span>
       <span class="rnd-tag">Substrate Innovation</span>
@@ -1336,160 +949,45 @@
   </div>
 </section>
 
-<!-- ── SECTION 7: TECHNOLOGY ── -->
-<section class="technology">
-  <div class="technology-inner">
-    <div class="kicker">Plant Intelligence System</div>
-    <h2>Three streams.<br>One fusion model.</h2>
-    <p class="section-sub">FusionPlantModel simultaneously processes visual, environmental, and phenological signals — catching stress before it is visible to the human eye.</p>
-
-    <div class="tech-grid">
-      <div class="tech-card">
-        <div class="tc-num">01 · Vision</div>
-        <div class="tc-title">Vision Encoder</div>
-        <div class="tc-spec">EfficientNet-B4 → (B, 512)</div>
-        <p class="tc-desc">Processes 380×380 RGB frames from inside the grow chamber. Detects leaf colour, lesions, morphology, and canopy density in real time.</p>
-      </div>
-      <div class="tech-card">
-        <div class="tc-num">02 · Sensor</div>
-        <div class="tc-title">Temporal Encoder</div>
-        <div class="tc-spec">Transformer ×4 → (B, 256)</div>
-        <p class="tc-desc">Encodes 72 hours of 8-channel sensor data at 15-minute intervals. Captures diurnal cycles, slow nutrient drift, and early stress before it appears visually.</p>
-      </div>
-      <div class="tech-card" style="border-right:none;">
-        <div class="tc-num">03 · Stage</div>
-        <div class="tc-title">Stage Embedding</div>
-        <div class="tc-spec">Embedding(8, 64) · LayerNorm</div>
-        <p class="tc-desc">Conditions every prediction on the current growth stage — germination through post-harvest. Health thresholds and setpoints are always calibrated to the plant's actual phase.</p>
-      </div>
-    </div>
-    <div class="outputs-row">
-      <div class="out-cell">
-        <div class="out-name">Health Class</div>
-        <div class="out-type">8-class · softmax</div>
-        <div class="out-use">Alert &amp; intervention trigger</div>
-      </div>
-      <div class="out-cell">
-        <div class="out-name">Nutrient Flags</div>
-        <div class="out-type">5-label · sigmoid</div>
-        <div class="out-use">Dosing system adjustment</div>
-      </div>
-      <div class="out-cell">
-        <div class="out-name">Growth Stage</div>
-        <div class="out-type">8-class · softmax</div>
-        <div class="out-use">Setpoint schedule advancement</div>
-      </div>
-      <div class="out-cell" style="border-right:none;">
-        <div class="out-name">Yield Forecast</div>
-        <div class="out-type">Regression · Softplus</div>
-        <div class="out-use">Harvest planning &amp; dashboard</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 8: PLATFORM ── -->
-<section class="platform">
-  <div class="platform-inner">
-    <div class="kicker">SaaS Platform</div>
-    <h2>Everything your farm<br>needs in one place</h2>
-    <p class="section-sub">API-first, multi-tenant architecture with real-time telemetry, automated alerting, and full fleet management.</p>
-
-    <div class="feats-grid">
-      <div class="feat">
-        <div class="feat-num">01</div>
-        <div class="feat-title">Real-Time Monitoring</div>
-        <p class="feat-desc">WebSocket telemetry every 30 seconds. Temperature, humidity, pH, EC, PAR, CO₂, and dissolved oxygen — all live, per container.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-num">02</div>
-        <div class="feat-title">Automated Control</div>
-        <p class="feat-desc">Closed-loop PID control for all environment variables. Stage-aware setpoints advance automatically as the plant develops.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-num">03</div>
-        <div class="feat-title">Intelligent Alerts</div>
-        <p class="feat-desc">Multi-channel notifications via SMS, email, and push. Custom rules per container and per stage.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-num">04</div>
-        <div class="feat-title">Fleet Management</div>
-        <p class="feat-desc">Manage hundreds of containers from a single tenant view. Geographic overview, health summary, and OTA firmware updates.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-num">05</div>
-        <div class="feat-title">Yield Analytics</div>
-        <p class="feat-desc">30-day yield forecasting per container. Historical trends, COGS tracking, and harvest planning export.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-num">06</div>
-        <div class="feat-title">Open API</div>
-        <p class="feat-desc">Full OpenAPI 3.1 surface. Integrate with ERP, POS, and any third-party system. WebSocket and webhook support included.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 9: MISSION / VISION SLIDER ── -->
-<section class="mv-section">
-  <div class="mv-inner">
-    <div class="mv-label">Our Purpose</div>
-
-    <div class="mv-slider" id="mvSlider">
-      <div class="mv-slide active" id="slide-0">
-        <div class="mv-slide-label">Mission</div>
-        <p class="mv-slide-text">"To decode, cultivate, and commercialize the world's most challenging specialty crops through science-led controlled-environment agriculture, transforming cultivation knowledge into a scalable and enduring source of value."</p>
-      </div>
-      <div class="mv-slide" id="slide-1">
-        <div class="mv-slide-label">Vision</div>
-        <p class="mv-slide-text">"A world where exceptional crops are no longer constrained by climate, geography, or seasonality, but can be grown locally, reliably, and at their highest potential wherever they are needed."</p>
-      </div>
-    </div>
-
-    <div class="mv-dots">
-      <button class="mv-dot active" data-slide="0" aria-label="Mission"></button>
-      <button class="mv-dot" data-slide="1" aria-label="Vision"></button>
-    </div>
-
-    <div class="mv-rule"></div>
-    <div class="mv-tagline">Clermont-Ferrand · Paris · France</div>
-  </div>
-</section>
-
-<!-- ── SECTION 10: CONTACT ── -->
-<section id="contact" class="contact">
+<!-- ══════════════════════════════════════════
+     SECTION 9 — CONTACT
+══════════════════════════════════════════ -->
+<section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <div class="kicker">Get in Touch</div>
-      <h2>Let's talk about your farm.</h2>
-      <p class="contact-info-text">Whether you are a farm operator, premium buyer, investor, or research institution — we would love to hear from you.</p>
+      <div class="kicker-light">Get in Touch</div>
+      <h2>Let's talk about what you're growing.</h2>
+      <p class="contact-info-text">Whether you are a premium buyer, investor, research partner, or simply curious — we would love to hear from you.</p>
       <div class="contact-details">
         <div class="c-row">
           <span class="c-label">Location</span>
           <span class="c-val">Clermont-Ferrand · Paris, France</span>
         </div>
         <div class="c-row">
-          <span class="c-label">General</span>
-          <a href="mailto:contact@arcanova-france.com" class="c-val">contact@arcanova-france.com</a>
+          <span class="c-label">Email</span>
+          <a href="mailto:aviswanath@arcanova-france.com" class="c-val">aviswanath@arcanova-france.com</a>
         </div>
         <div class="c-row">
-          <span class="c-label">Support</span>
-          <a href="mailto:support@arcanova-france.com" class="c-val">support@arcanova-france.com</a>
-        </div>
-        <div class="c-row">
-          <span class="c-label">Partnerships</span>
-          <a href="mailto:partners@arcanova-france.com" class="c-val">partners@arcanova-france.com</a>
+          <span class="c-label">Mobile</span>
+          <a href="tel:+33749085511" class="c-val">+33 749 085 511</a>
         </div>
       </div>
     </div>
 
     <!--
-      CONTACT FORM — Options:
-      A) Formspree (recommended): sign up at formspree.io, replace YOUR_FORM_ID below
-         action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
-      B) Currently uses mailto: as a working fallback (opens email client)
+      FORMSPREE SETUP:
+      1. Go to formspree.io and sign up (free: 50 submissions/month)
+      2. Click "New Form" — give it a name like "ArcaNova Contact"
+      3. Copy your Form ID (looks like: xpzgeqko)
+      4. Replace YOUR_FORM_ID below with that ID
+      5. Done — submissions arrive at aviswanath@arcanova-france.com
     -->
-    <form class="form-stack" action="mailto:contact@arcanova-france.com" method="GET" enctype="text/plain">
+    <form class="form-stack"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST">
+
+      <input type="hidden" name="_subject" value="New enquiry — ArcaNova website">
+
       <div class="form-row">
         <div class="fg">
           <label for="name">Name</label>
@@ -1500,33 +998,39 @@
           <input type="email" id="email" name="email" placeholder="you@company.com" required>
         </div>
       </div>
+
       <div class="fg">
         <label for="org">Organisation</label>
         <input type="text" id="org" name="org" placeholder="Company or institution">
       </div>
+
       <div class="fg">
         <label for="interest">Interest</label>
         <select id="interest" name="interest">
           <option value="">Select…</option>
-          <option>Farm deployment / demo</option>
           <option>Premium crop sourcing</option>
           <option>Investment &amp; partnership</option>
           <option>Research collaboration</option>
           <option>Circular bioeconomy</option>
+          <option>Farm deployment / demo</option>
           <option>General enquiry</option>
         </select>
       </div>
-      <div class="fg full">
+
+      <div class="fg">
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Tell us about your project, goals, or questions…"></textarea>
       </div>
+
       <button type="submit" class="btn-submit">Send Message →</button>
-      <p class="form-note">Or write directly to contact@arcanova-france.com</p>
+      <p class="form-note">Or reach us directly at aviswanath@arcanova-france.com · +33 749 085 511</p>
     </form>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div>
@@ -1534,22 +1038,24 @@
       <div class="footer-tagline">The Season Is Now</div>
     </div>
     <ul class="footer-links">
-      <li><a href="#conviction">About</a></li>
-      <li><a href="#problem">The Problem</a></li>
-      <li><a href="#engines">Our Approach</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#problem-section">The Problem</a></li>
+      <li><a href="#approach">Our Approach</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="footer-copy">© 2026 ArcaNova · Clermont-Ferrand · Paris · France</div>
   </div>
 </footer>
 
-<!-- ── MISSION / VISION SLIDER SCRIPT ── -->
+<!-- ══════════════════════════════════════════
+     MISSION / VISION SLIDER SCRIPT
+══════════════════════════════════════════ -->
 <script>
   (function () {
-    const slides = document.querySelectorAll('.mv-slide');
-    const dots   = document.querySelectorAll('.mv-dot');
-    let current  = 0;
-    let timer;
+    var slides  = document.querySelectorAll('.mv-slide');
+    var dots    = document.querySelectorAll('.mv-dot');
+    var current = 0;
+    var timer;
 
     function goTo(idx) {
       slides[current].classList.remove('active');
@@ -1560,7 +1066,6 @@
     }
 
     function next() { goTo((current + 1) % slides.length); }
-
     function start() { timer = setInterval(next, 6000); }
     function stop()  { clearInterval(timer); }
 
