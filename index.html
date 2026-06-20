@@ -90,70 +90,61 @@
       min-height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      background: var(--forest);
+      background: #182E20;
       padding: 80px 2rem 4rem;
       text-align: center;
       overflow: hidden;
     }
-    /* subtle vignette to match the PDF's textured dark bg */
-    .cover::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 80% at 50% 40%, transparent 30%, rgba(5,10,7,0.55) 100%);
-      pointer-events: none;
-    }
-    /* faint watermark text — matches PDF background pattern */
-    .cover::after {
-      content: 'ARCANOVA';
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(5rem, 20vw, 18rem);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: rgba(245,241,230,0.018);
-      pointer-events: none;
-      user-select: none;
-    }
     .cover-logo {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 480px;
-      margin-bottom: 3rem;
+      position: relative; z-index: 2;
+      width: 100%; max-width: 320px;
+      margin-bottom: 2rem;
     }
-    .cover-logo img { width: 100%; height: auto; display: block; }
+    .cover-logo img {
+      width: 100%; height: auto; display: block;
+      clip-path: ellipse(34.5% 37.5% at 50% 47%);
+    }
+    .cover-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--cream);
+      position: relative; z-index: 2;
+      margin-bottom: 0.5rem;
+    }
+    .cover-tagline-text {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--sage-light);
+      letter-spacing: 0.1em;
+      position: relative; z-index: 2;
+      margin-bottom: 2rem;
+    }
 
     .cover-rule {
       width: 44px; height: 1px;
-      background: rgba(245,241,230,0.3);
-      margin: 0 auto 1.5rem;
-      position: relative; z-index: 1;
+      background: rgba(245,241,230,0.25);
+      margin: 0 auto 1.4rem;
+      position: relative; z-index: 2;
     }
     .cover-label {
       font-family: 'Inter', sans-serif;
-      font-size: 0.7rem; letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(245,241,230,0.5);
-      margin-bottom: 0.6rem;
-      position: relative; z-index: 1;
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(245,241,230,0.45);
+      margin-bottom: 0.55rem;
+      position: relative; z-index: 2;
     }
     .cover-location {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.05rem;
-      color: rgba(245,241,230,0.45);
-      letter-spacing: 0.08em;
-      margin-bottom: 0.35rem;
-      position: relative; z-index: 1;
-    }
-    .cover-date {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.72rem;
-      color: rgba(245,241,230,0.25);
-      letter-spacing: 0.08em;
-      margin-bottom: 3rem;
-      position: relative; z-index: 1;
+      font-family: 'EB Garamond', serif; font-size: 1rem;
+      color: rgba(245,241,230,0.4); letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      position: relative; z-index: 2;
     }
     .cover-cta {
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
     }
     .btn-cream {
@@ -171,8 +162,8 @@
     }
     .btn-ghost:hover { border-color: var(--cream); background: rgba(245,241,230,0.06); }
     .scroll-cue {
-      position: relative; z-index: 1;
-      margin-top: 3.5rem;
+      position: relative; z-index: 2;
+      margin-top: 3rem;
       display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
       font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em;
       text-transform: uppercase; color: rgba(245,241,230,0.3);
@@ -684,10 +675,11 @@
     <img src="logo1.png" alt="ArcaNova — Urban Biotech Farming">
   </div>
 
+  <div class="cover-wordmark">ArcaNova</div>
+  <div class="cover-tagline-text">The Season Is Now</div>
+
   <div class="cover-rule"></div>
-  <div class="cover-label">Brand Story</div>
   <div class="cover-location">Clermont-Ferrand &nbsp;·&nbsp; Paris &nbsp;·&nbsp; France</div>
-  <div class="cover-date">June 2026</div>
 
   <div class="cover-cta">
     <a href="#about" class="btn-cream">Discover Our Story</a>
