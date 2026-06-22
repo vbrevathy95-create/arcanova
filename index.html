@@ -81,6 +81,21 @@
       background: rgba(245,241,230,0.08) !important;
       border-color: rgba(245,241,230,0.6) !important;
     }
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(245,241,230,0.38);
+      padding: 0.25rem 0.35rem;
+      transition: color 0.2s;
+    }
+    .lang-btn:hover { color: var(--cream); }
+    .lang-btn.active { color: var(--sage-light); font-weight: 600; }
+    .lang-sep { color: rgba(245,241,230,0.18); font-size: 0.7rem; }
 
     /* ═══════════════════════════════════════
        SECTION 1 — COVER (PDF Page 1 style)
@@ -659,11 +674,16 @@
      NAV
 ══════════════════════════════════════════ -->
 <nav>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" data-lang="fr">FR</button>
+  </div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#problem-section">The Problem</a></li>
-    <li><a href="#approach">Our Approach</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#problem-section" data-i18n="nav.problem">The Problem</a></li>
+    <li><a href="#approach" data-i18n="nav.approach">Our Approach</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -676,23 +696,22 @@
   </div>
 
   <div class="cover-wordmark">ArcaNova</div>
-  <div class="cover-tagline-text">The Season Is Now</div>
+  <div class="cover-tagline-text" data-i18n="cover.tagline">The Season Is Now</div>
 
   <div class="cover-rule"></div>
   <div class="cover-location">Clermont-Ferrand &nbsp;·&nbsp; Paris &nbsp;·&nbsp; France</div>
 
   <div class="cover-cta">
-    <a href="#about" class="btn-cream">Discover Our Story</a>
-    <a href="#contact" class="btn-ghost">Get in Touch</a>
+    <a href="#about" class="btn-cream" data-i18n="cover.discover">Discover Our Story</a>
+    <a href="#contact" class="btn-ghost" data-i18n="cover.touch">Get in Touch</a>
   </div>
-
 
   <div class="scroll-cue">
     <div class="scroll-line"></div>
-    <span>Scroll</span>
+    <span data-i18n="cover.scroll">Scroll</span>
   </div>
 
-  <div class="cover-confidential">For Partner and Investor Discussion</div>
+  <div class="cover-confidential" data-i18n="cover.confidential">For Partner and Investor Discussion</div>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -700,16 +719,16 @@
 ══════════════════════════════════════════ -->
 <section class="mv-section">
   <div class="mv-inner">
-    <div class="mv-kicker">Our Purpose</div>
+    <div class="mv-kicker" data-i18n="mv.purpose">Our Purpose</div>
 
     <div class="mv-slider" id="mvSlider">
       <div class="mv-slide active" id="slide-0">
-        <div class="mv-slide-label">Mission</div>
-        <p class="mv-slide-text">"To decode, cultivate, and commercialize the world's most challenging specialty crops through science-led controlled-environment agriculture, transforming cultivation knowledge into a scalable and enduring source of value."</p>
+        <div class="mv-slide-label" data-i18n="mv.mission-label">Mission</div>
+        <p class="mv-slide-text" data-i18n="mv.mission-text">"To decode, cultivate, and commercialize the world's most challenging specialty crops through science-led controlled-environment agriculture, transforming cultivation knowledge into a scalable and enduring source of value."</p>
       </div>
       <div class="mv-slide" id="slide-1">
-        <div class="mv-slide-label">Vision</div>
-        <p class="mv-slide-text">"A world where exceptional crops are no longer constrained by climate, geography, or seasonality, but can be grown locally, reliably, and at their highest potential wherever they are needed."</p>
+        <div class="mv-slide-label" data-i18n="mv.vision-label">Vision</div>
+        <p class="mv-slide-text" data-i18n="mv.vision-text">"A world where exceptional crops are no longer constrained by climate, geography, or seasonality, but can be grown locally, reliably, and at their highest potential wherever they are needed."</p>
       </div>
     </div>
 
@@ -729,21 +748,21 @@
 <section class="hero">
   <div class="grain"></div>
   <div class="hero-inner">
-    <div class="hero-tagline">The Season Is Now</div>
-    <h1 class="hero-headline">Precision-Grown.<br>Scientifically Engineered.</h1>
-    <p class="hero-sub">ArcaNova builds controlled-environment cultivation systems for high-value specialty crops — combining plant biotechnology, precision engineering, and circular agriculture to grow what conventional farming cannot. We serve premium buyers, researchers, and partners seeking reliable, science-backed quality, year-round, regardless of climate.</p>
+    <div class="hero-tagline" data-i18n="cover.tagline">The Season Is Now</div>
+    <h1 class="hero-headline" data-i18n="hero.headline">Precision-Grown.<br>Scientifically Engineered.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">ArcaNova builds controlled-environment cultivation systems for high-value specialty crops — combining plant biotechnology, precision engineering, and circular agriculture to grow what conventional farming cannot. We serve premium buyers, researchers, and partners seeking reliable, science-backed quality, year-round, regardless of climate.</p>
 
     <div class="hero-rule"></div>
 
-    <p class="hero-quote">Not crops. Not containers. Not technology. At the deepest level, we sell conviction with roots — the assurance that limits can be challenged, redesigned, and broken, that scarcity can be solved, that even in a changing world, life can still be grown. Anywhere.</p>
+    <p class="hero-quote" data-i18n="hero.quote">Not crops. Not containers. Not technology. At the deepest level, we sell conviction with roots — the assurance that limits can be challenged, redesigned, and broken, that scarcity can be solved, that even in a changing world, life can still be grown. Anywhere.</p>
 
-    <div class="hero-close">The future should be grown, not sourced.</div>
+    <div class="hero-close" data-i18n="hero.close">The future should be grown, not sourced.</div>
 
     <div class="hero-tags">
-      <div class="hero-tag">Local</div>
-      <div class="hero-tag">Verified</div>
-      <div class="hero-tag">Circular</div>
-      <div class="hero-tag">Protocol-led</div>
+      <div class="hero-tag" data-i18n="hero.local">Local</div>
+      <div class="hero-tag" data-i18n="hero.verified">Verified</div>
+      <div class="hero-tag" data-i18n="hero.circular">Circular</div>
+      <div class="hero-tag" data-i18n="hero.protocol">Protocol-led</div>
     </div>
   </div>
 </section>
@@ -753,23 +772,23 @@
 ══════════════════════════════════════════ -->
 <section class="conviction" id="about">
   <div class="conviction-inner">
-    <div class="kicker-light">What ArcaNova Sells</div>
-    <h2>ArcaNova sells conviction.</h2>
+    <div class="kicker-light" data-i18n="conviction.kicker">What ArcaNova Sells</div>
+    <h2 data-i18n="conviction.h2">ArcaNova sells conviction.</h2>
 
-    <p class="conviction-body">The conviction that we do not have to accept things just because they have always been that way.</p>
-    <p class="conviction-body">That good food should not depend on luck, weather, distance, or season. That a chef should never have to say "we cannot get it." That a country should not have to depend on someone far away to feed its people. That farmers, scientists, and builders can work together to build something cleaner, closer, and more reliable. That a wasted grape skin, a spent lavender stalk, or a forgotten root pulp does not have to stay waste, when it can become food.</p>
+    <p class="conviction-body" data-i18n="conviction.body1">The conviction that we do not have to accept things just because they have always been that way.</p>
+    <p class="conviction-body" data-i18n="conviction.body2">That good food should not depend on luck, weather, distance, or season. That a chef should never have to say "we cannot get it." That a country should not have to depend on someone far away to feed its people. That farmers, scientists, and builders can work together to build something cleaner, closer, and more reliable. That a wasted grape skin, a spent lavender stalk, or a forgotten root pulp does not have to stay waste, when it can become food.</p>
 
     <div class="conviction-rule"></div>
 
-    <div class="delivered-label">Delivered Through</div>
+    <div class="delivered-label" data-i18n="conviction.delivered">Delivered Through</div>
     <div class="pill-row">
-      <span class="pill">The Crops</span>
-      <span class="pill">CEA Platforms</span>
-      <span class="pill">Substrate Science</span>
-      <span class="pill">Bioeconomy Innovation</span>
+      <span class="pill" data-i18n="conviction.pill1">The Crops</span>
+      <span class="pill" data-i18n="conviction.pill2">CEA Platforms</span>
+      <span class="pill" data-i18n="conviction.pill3">Substrate Science</span>
+      <span class="pill" data-i18n="conviction.pill4">Bioeconomy Innovation</span>
     </div>
 
-    <p class="conviction-footnote">These are how we deliver on that conviction — they are not the reason it matters.</p>
+    <p class="conviction-footnote" data-i18n="conviction.footnote">These are how we deliver on that conviction — they are not the reason it matters.</p>
   </div>
 </section>
 
@@ -778,36 +797,36 @@
 ══════════════════════════════════════════ -->
 <section class="built-for">
   <div class="built-for-inner">
-    <div class="kicker-light">Who We Are Built For</div>
-    <h2>Built for people who refuse to settle for "not available."</h2>
+    <div class="kicker-light" data-i18n="built.kicker">Who We Are Built For</div>
+    <h2 data-i18n="built.h2">Built for people who refuse to settle for "not available."</h2>
 
     <div class="audience-row">
       <span class="a-num">01</span>
-      <span class="a-name">The Chef</span>
-      <span class="a-desc">Who wants freshness without compromise — and refuses to say "not available."</span>
+      <span class="a-name" data-i18n="built.name1">The Chef</span>
+      <span class="a-desc" data-i18n="built.desc1">Who wants freshness without compromise — and refuses to say "not available."</span>
     </div>
     <div class="audience-row">
       <span class="a-num">02</span>
-      <span class="a-name">The Scientist</span>
-      <span class="a-desc">Who wants to turn research into real life — not just publications.</span>
+      <span class="a-name" data-i18n="built.name2">The Scientist</span>
+      <span class="a-desc" data-i18n="built.desc2">Who wants to turn research into real life — not just publications.</span>
     </div>
     <div class="audience-row">
       <span class="a-num">03</span>
-      <span class="a-name">The Investor</span>
-      <span class="a-desc">Who wants to back courage, not copycats — and fund something that lasts.</span>
+      <span class="a-name" data-i18n="built.name3">The Investor</span>
+      <span class="a-desc" data-i18n="built.desc3">Who wants to back courage, not copycats — and fund something that lasts.</span>
     </div>
     <div class="audience-row">
       <span class="a-num">04</span>
-      <span class="a-name">The People</span>
-      <span class="a-desc">Who simply want better food, grown with intelligence and care, close to home.</span>
+      <span class="a-name" data-i18n="built.name4">The People</span>
+      <span class="a-desc" data-i18n="built.desc4">Who simply want better food, grown with intelligence and care, close to home.</span>
     </div>
     <div class="audience-row">
       <span class="a-num">05</span>
-      <span class="a-name">Circular Bioeconomy Partners</span>
-      <span class="a-desc">Who want underutilized industrial byproducts turned into higher-value agriculture, not waste.</span>
+      <span class="a-name" data-i18n="built.name5">Circular Bioeconomy Partners</span>
+      <span class="a-desc" data-i18n="built.desc5">Who want underutilized industrial byproducts turned into higher-value agriculture, not waste.</span>
     </div>
 
-    <p class="built-for-footer">ArcaNova is built for people who believe the future should be grown, not imported.</p>
+    <p class="built-for-footer" data-i18n="built.footer">ArcaNova is built for people who believe the future should be grown, not imported.</p>
   </div>
 </section>
 
@@ -816,30 +835,30 @@
 ══════════════════════════════════════════ -->
 <section class="problem-brand" id="problem-section">
   <div class="problem-brand-inner">
-    <div class="kicker-light">The Problem We Exist to Solve</div>
-    <h2 class="problem-brand-h2" style="font-size:clamp(30px,4.5vw,48px);font-weight:600;line-height:1.2;color:var(--forest);margin-bottom:30px;letter-spacing:-0.01em;max-width:26ch;">Europe's appetite for premium, high-specialty crops is growing far faster than Europe's ability to grow them.</h2>
+    <div class="kicker-light" data-i18n="pb.kicker">The Problem We Exist to Solve</div>
+    <h2 class="problem-brand-h2" style="font-size:clamp(30px,4.5vw,48px);font-weight:600;line-height:1.2;color:var(--forest);margin-bottom:30px;letter-spacing:-0.01em;max-width:26ch;" data-i18n="pb.h2">Europe's appetite for premium, high-specialty crops is growing far faster than Europe's ability to grow them.</h2>
 
-    <p class="problem-brand-lead">Genuine wasabi shows how extreme that gap has become. Commercial wasabi farming across the entire European continent produces well under ten metric tonnes a year, concentrated in a handful of farms in the UK, Switzerland, and the Azores. Fresh rhizomes lose quality quickly after harvest, making reliable local production essential — yet Europe remains near-totally dependent on imports from Japan, Taiwan, and New Zealand, at prices that put authentic wasabi out of reach for most kitchens.</p>
+    <p class="problem-brand-lead" data-i18n="pb.lead">Genuine wasabi shows how extreme that gap has become. Commercial wasabi farming across the entire European continent produces well under ten metric tonnes a year, concentrated in a handful of farms in the UK, Switzerland, and the Azores. Fresh rhizomes lose quality quickly after harvest, making reliable local production essential — yet Europe remains near-totally dependent on imports from Japan, Taiwan, and New Zealand, at prices that put authentic wasabi out of reach for most kitchens.</p>
 
     <div class="wasabi-stats">
       <div class="w-stat">
         <div class="w-stat-num">&lt;10t</div>
-        <div class="w-stat-cap">Total European wasabi production per year</div>
+        <div class="w-stat-cap" data-i18n="pb.stat1">Total European wasabi production per year</div>
       </div>
       <div class="w-stat">
         <div class="w-stat-num">&lt;24h</div>
-        <div class="w-stat-cap">ArcaNova's harvest-to-customer delivery target</div>
+        <div class="w-stat-cap" data-i18n="pb.stat2">ArcaNova's harvest-to-customer delivery target</div>
       </div>
       <div class="w-stat">
         <div class="w-stat-num">~100,000t</div>
-        <div class="w-stat-cap">Mushrooms imported into Europe every year</div>
+        <div class="w-stat-cap" data-i18n="pb.stat3">Mushrooms imported into Europe every year</div>
       </div>
     </div>
 
-    <p class="problem-brand-body">Specialty and functional mushrooms — shiitake, oyster, lion's mane, cordyceps — show rising demand across Europe, while domestic production stays constrained by labor, climate, cost, and substrate availability.</p>
-    <p class="problem-brand-body">At the same time, France generates large volumes of underutilized industrial byproducts every year. ArcaNova turns regional byproducts into high-performance cultivation substrates — enabling local mushroom production while cutting waste and transport, and supporting a circular bioeconomy.</p>
+    <p class="problem-brand-body" data-i18n="pb.body1">Specialty and functional mushrooms — shiitake, oyster, lion's mane, cordyceps — show rising demand across Europe, while domestic production stays constrained by labor, climate, cost, and substrate availability.</p>
+    <p class="problem-brand-body" data-i18n="pb.body2">At the same time, France generates large volumes of underutilized industrial byproducts every year. ArcaNova turns regional byproducts into high-performance cultivation substrates — enabling local mushroom production while cutting waste and transport, and supporting a circular bioeconomy.</p>
 
-    <p class="problem-brand-bold">This is not a temporary shortage. It is a structural one — and it is precisely the gap ArcaNova is built to close.</p>
+    <p class="problem-brand-bold" data-i18n="pb.bold">This is not a temporary shortage. It is a structural one — and it is precisely the gap ArcaNova is built to close.</p>
   </div>
 </section>
 
@@ -848,35 +867,35 @@
 ══════════════════════════════════════════ -->
 <section class="problem">
   <div class="problem-inner">
-    <div class="kicker-light">The Problem</div>
-    <h2 class="headline">Premium shouldn't mean fragile.</h2>
+    <div class="kicker-light" data-i18n="prob.kicker">The Problem</div>
+    <h2 class="headline" data-i18n="prob.h2">Premium shouldn't mean fragile.</h2>
 
-    <p class="lead">Premium buyers — chefs, specialty retailers, wellness and nutraceutical brands — consistently struggle to source high-value specialty crops that meet real standards of freshness, authenticity, and quality. Conventional agriculture and standard greenhouses are constrained by climate, geography, and long, fragile supply chains.</p>
-    <p class="lead tight">The result is produce that travels too far, arrives too late, or simply isn't authentic to begin with. Climate volatility and rising demand for traceable, sustainably produced food are now pushing buyers and policymakers toward local, resilient alternatives — alternatives that, until now, haven't existed at the quality level premium markets actually require.</p>
+    <p class="lead" data-i18n="prob.lead1">Premium buyers — chefs, specialty retailers, wellness and nutraceutical brands — consistently struggle to source high-value specialty crops that meet real standards of freshness, authenticity, and quality. Conventional agriculture and standard greenhouses are constrained by climate, geography, and long, fragile supply chains.</p>
+    <p class="lead tight" data-i18n="prob.lead2">The result is produce that travels too far, arrives too late, or simply isn't authentic to begin with. Climate volatility and rising demand for traceable, sustainably produced food are now pushing buyers and policymakers toward local, resilient alternatives — alternatives that, until now, haven't existed at the quality level premium markets actually require.</p>
 
     <div class="rule"></div>
 
-    <div class="stat-label-row">Why this gap is widening</div>
+    <div class="stat-label-row" data-i18n="prob.stat-why">Why this gap is widening</div>
     <div class="stat-grid">
       <div class="stat">
         <div class="stat-num">€28B</div>
-        <div class="stat-caption">Lost by European farms to extreme weather every year — rising as climate volatility increases</div>
+        <div class="stat-caption" data-i18n="prob.s1">Lost by European farms to extreme weather every year — rising as climate volatility increases</div>
       </div>
       <div class="stat">
         <div class="stat-num">45%</div>
-        <div class="stat-caption">Of the world's fresh produce is lost or wasted before it reaches a plate</div>
+        <div class="stat-caption" data-i18n="prob.s2">Of the world's fresh produce is lost or wasted before it reaches a plate</div>
       </div>
       <div class="stat">
         <div class="stat-num">76%</div>
-        <div class="stat-caption">Of buyers say sourcing transparency now directly shapes what they purchase</div>
+        <div class="stat-caption" data-i18n="prob.s3">Of buyers say sourcing transparency now directly shapes what they purchase</div>
       </div>
       <div class="stat">
         <div class="stat-num">$45B</div>
-        <div class="stat-caption">Projected size of the food traceability market by 2034, up from $13B in 2024</div>
+        <div class="stat-caption" data-i18n="prob.s4">Projected size of the food traceability market by 2034, up from $13B in 2024</div>
       </div>
       <div class="stat">
         <div class="stat-num">$140B+</div>
-        <div class="stat-caption">Size of Europe's nutraceuticals market in 2025 — nearly doubling by 2035</div>
+        <div class="stat-caption" data-i18n="prob.s5">Size of Europe's nutraceuticals market in 2025 — nearly doubling by 2035</div>
       </div>
     </div>
   </div>
@@ -885,7 +904,7 @@
 <section class="close-band">
   <div class="grain" style="opacity:0.5;mix-blend-mode:overlay;"></div>
   <div class="close-inner">
-    <div class="close-line">If you can't trace it, you can't promise it. <em>ArcaNova is built for buyers who refuse to compromise on either.</em></div>
+    <div class="close-line" data-i18n="prob.close">If you can't trace it, you can't promise it. <em>ArcaNova is built for buyers who refuse to compromise on either.</em></div>
   </div>
 </section>
 
@@ -894,46 +913,46 @@
 ══════════════════════════════════════════ -->
 <section class="engines" id="approach">
   <div class="engines-inner">
-    <div class="kicker-light">How We Close the Gap</div>
-    <h2>Two Engines, One Conviction</h2>
-    <p class="engines-sub">ArcaNova closes Europe's premium crop supply gap through two interconnected engines — production and R&amp;D, feeding each other in a continuous loop.</p>
+    <div class="kicker-light" data-i18n="eng.kicker">How We Close the Gap</div>
+    <h2 data-i18n="eng.h2">Two Engines, One Conviction</h2>
+    <p class="engines-sub" data-i18n="eng.sub">ArcaNova closes Europe's premium crop supply gap through two interconnected engines — production and R&amp;D, feeding each other in a continuous loop.</p>
 
-    <div class="engine-label">Engine One</div>
-    <div class="engine-title">Production Engine</div>
-    <p class="engine-desc-main">Commercial revenue through two pathways operating on ArcaNova's Controlled Environment Agriculture (CEA) platform.</p>
+    <div class="engine-label" data-i18n="eng.e1label">Engine One</div>
+    <div class="engine-title" data-i18n="eng.e1title">Production Engine</div>
+    <p class="engine-desc-main" data-i18n="eng.e1desc">Commercial revenue through two pathways operating on ArcaNova's Controlled Environment Agriculture (CEA) platform.</p>
 
     <div class="pathways-grid">
       <div class="pathway-card">
-        <div class="pathway-kicker">Pathway A</div>
-        <div class="pathway-title">Premium Microgreens &amp; Specialty Crops</div>
-        <p class="pathway-desc">Precision-controlled CEA systems produce premium microgreens and specialty crops year-round, independent of weather or season, with wasabi representing the next phase of crop expansion.</p>
+        <div class="pathway-kicker" data-i18n="eng.pathA-kicker">Pathway A</div>
+        <div class="pathway-title" data-i18n="eng.pathA-title">Premium Microgreens &amp; Specialty Crops</div>
+        <p class="pathway-desc" data-i18n="eng.pathA-desc">Precision-controlled CEA systems produce premium microgreens and specialty crops year-round, independent of weather or season, with wasabi representing the next phase of crop expansion.</p>
       </div>
       <div class="pathway-card">
-        <div class="pathway-kicker">Pathway B</div>
-        <div class="pathway-title">Circular Mushroom Bioeconomy</div>
-        <p class="pathway-desc">French agro-industrial biowaste is transformed into substrate for premium mushrooms, creating a closed-loop system where waste becomes food and spent substrate is returned to the land. Original work protected under formal French IP.</p>
+        <div class="pathway-kicker" data-i18n="eng.pathB-kicker">Pathway B</div>
+        <div class="pathway-title" data-i18n="eng.pathB-title">Circular Mushroom Bioeconomy</div>
+        <p class="pathway-desc" data-i18n="eng.pathB-desc">French agro-industrial biowaste is transformed into substrate for premium mushrooms, creating a closed-loop system where waste becomes food and spent substrate is returned to the land. Original work protected under formal French IP.</p>
       </div>
     </div>
 
     <div class="loop-diagram">
-      <div class="loop-node">Production Engine</div>
+      <div class="loop-node" data-i18n="eng.e1title">Production Engine</div>
       <div class="loop-arrows">
-        <span>Real-world data →</span>
-        <span>← Improved protocols</span>
+        <span data-i18n="eng.loop1">Real-world data →</span>
+        <span data-i18n="eng.loop2">← Improved protocols</span>
       </div>
-      <div class="loop-node">R&amp;D Engine</div>
+      <div class="loop-node" data-i18n="eng.e2title">R&amp;D Engine</div>
     </div>
 
     <hr class="engines-divider">
 
-    <div class="engine-label">Engine Two</div>
-    <div class="engine-title">R&amp;D Engine</div>
-    <p class="engine-desc-main">Working with academic, scientific, and industry partners, the R&amp;D Engine continuously improves crop performance and substrate formulations — insights that strengthen production, while production data accelerates research.</p>
+    <div class="engine-label" data-i18n="eng.e2label">Engine Two</div>
+    <div class="engine-title" data-i18n="eng.e2title">R&amp;D Engine</div>
+    <p class="engine-desc-main" data-i18n="eng.e2desc">Working with academic, scientific, and industry partners, the R&amp;D Engine continuously improves crop performance and substrate formulations — insights that strengthen production, while production data accelerates research.</p>
     <div class="rnd-tags">
-      <span class="rnd-tag">Crop Performance</span>
-      <span class="rnd-tag">Substrate Innovation</span>
-      <span class="rnd-tag">Yield Consistency</span>
-      <span class="rnd-tag">Resource Efficiency</span>
+      <span class="rnd-tag" data-i18n="eng.tag1">Crop Performance</span>
+      <span class="rnd-tag" data-i18n="eng.tag2">Substrate Innovation</span>
+      <span class="rnd-tag" data-i18n="eng.tag3">Yield Consistency</span>
+      <span class="rnd-tag" data-i18n="eng.tag4">Resource Efficiency</span>
     </div>
   </div>
 </section>
@@ -944,20 +963,20 @@
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <div class="kicker-light">Get in Touch</div>
-      <h2>Let's talk about what you're growing.</h2>
-      <p class="contact-info-text">Whether you are a premium buyer, investor, research partner, or simply curious — we would love to hear from you.</p>
+      <div class="kicker-light" data-i18n="contact.kicker">Get in Touch</div>
+      <h2 data-i18n="contact.h2">Let's talk about what you're growing.</h2>
+      <p class="contact-info-text" data-i18n="contact.info">Whether you are a premium buyer, investor, research partner, or simply curious — we would love to hear from you.</p>
       <div class="contact-details">
         <div class="c-row">
-          <span class="c-label">Location</span>
+          <span class="c-label" data-i18n="contact.loc-label">Location</span>
           <span class="c-val">Clermont-Ferrand · Paris, France</span>
         </div>
         <div class="c-row">
-          <span class="c-label">Email</span>
+          <span class="c-label" data-i18n="contact.email-label">Email</span>
           <a href="mailto:aviswanath@arcanova-france.com" class="c-val">aviswanath@arcanova-france.com</a>
         </div>
         <div class="c-row">
-          <span class="c-label">Mobile</span>
+          <span class="c-label" data-i18n="contact.mobile-label">Mobile</span>
           <a href="tel:+33749085511" class="c-val">+33 749 085 511</a>
         </div>
       </div>
@@ -979,40 +998,40 @@
 
       <div class="form-row">
         <div class="fg">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
+          <label for="name" data-i18n="form.name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" data-i18n-ph="form.name-ph" required>
         </div>
         <div class="fg">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          <label for="email" data-i18n="form.email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" data-i18n-ph="form.email-ph" required>
         </div>
       </div>
 
       <div class="fg">
-        <label for="org">Organisation</label>
-        <input type="text" id="org" name="org" placeholder="Company or institution">
+        <label for="org" data-i18n="form.org">Organisation</label>
+        <input type="text" id="org" name="org" placeholder="Company or institution" data-i18n-ph="form.org-ph">
       </div>
 
       <div class="fg">
-        <label for="interest">Interest</label>
+        <label for="interest" data-i18n="form.interest">Interest</label>
         <select id="interest" name="interest">
-          <option value="">Select…</option>
-          <option>Premium crop sourcing</option>
-          <option>Investment &amp; partnership</option>
-          <option>Research collaboration</option>
-          <option>Circular bioeconomy</option>
-          <option>Farm deployment / demo</option>
-          <option>General enquiry</option>
+          <option value="" data-i18n="form.opt0">Select…</option>
+          <option data-i18n="form.opt1">Premium crop sourcing</option>
+          <option data-i18n="form.opt2">Investment &amp; partnership</option>
+          <option data-i18n="form.opt3">Research collaboration</option>
+          <option data-i18n="form.opt4">Circular bioeconomy</option>
+          <option data-i18n="form.opt5">Farm deployment / demo</option>
+          <option data-i18n="form.opt6">General enquiry</option>
         </select>
       </div>
 
       <div class="fg">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your project, goals, or questions…"></textarea>
+        <label for="message" data-i18n="form.message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your project, goals, or questions…" data-i18n-ph="form.msg-ph"></textarea>
       </div>
 
-      <button type="submit" class="btn-submit">Send Message →</button>
-      <p class="form-note">Or reach us directly at aviswanath@arcanova-france.com · +33 749 085 511</p>
+      <button type="submit" class="btn-submit" data-i18n="form.submit">Send Message →</button>
+      <p class="form-note" data-i18n="form.note">Or reach us directly at aviswanath@arcanova-france.com · +33 749 085 511</p>
     </form>
   </div>
 </section>
@@ -1027,10 +1046,10 @@
       <div class="footer-tagline">The Season Is Now</div>
     </div>
     <ul class="footer-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#problem-section">The Problem</a></li>
-      <li><a href="#approach">Our Approach</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#problem-section" data-i18n="nav.problem">The Problem</a></li>
+      <li><a href="#approach" data-i18n="nav.approach">Our Approach</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="footer-copy">© 2026 ArcaNova · Clermont-Ferrand · Paris · France</div>
   </div>
@@ -1068,6 +1087,299 @@
 
     start();
   })();
+</script>
+
+<!-- ══════════════════════════════════════════
+     LANGUAGE SWITCHER
+══════════════════════════════════════════ -->
+<script>
+(function () {
+  var T = {
+    en: {
+      /* nav */
+      'nav.about':   'About',
+      'nav.problem': 'The Problem',
+      'nav.approach':'Our Approach',
+      'nav.contact': 'Contact',
+      /* cover */
+      'cover.tagline':     'The Season Is Now',
+      'cover.discover':    'Discover Our Story',
+      'cover.touch':       'Get in Touch',
+      'cover.scroll':      'Scroll',
+      'cover.confidential':'For Partner and Investor Discussion',
+      /* mission / vision */
+      'mv.purpose':      'Our Purpose',
+      'mv.mission-label':'Mission',
+      'mv.mission-text': '"To decode, cultivate, and commercialize the world\'s most challenging specialty crops through science-led controlled-environment agriculture, transforming cultivation knowledge into a scalable and enduring source of value."',
+      'mv.vision-label': 'Vision',
+      'mv.vision-text':  '"A world where exceptional crops are no longer constrained by climate, geography, or seasonality, but can be grown locally, reliably, and at their highest potential wherever they are needed."',
+      /* hero */
+      'hero.headline': 'Precision-Grown.<br>Scientifically Engineered.',
+      'hero.sub':      'ArcaNova builds controlled-environment cultivation systems for high-value specialty crops — combining plant biotechnology, precision engineering, and circular agriculture to grow what conventional farming cannot. We serve premium buyers, researchers, and partners seeking reliable, science-backed quality, year-round, regardless of climate.',
+      'hero.quote':    'Not crops. Not containers. Not technology. At the deepest level, we sell conviction with roots — the assurance that limits can be challenged, redesigned, and broken, that scarcity can be solved, that even in a changing world, life can still be grown. Anywhere.',
+      'hero.close':    'The future should be grown, not sourced.',
+      'hero.local':    'Local',
+      'hero.verified': 'Verified',
+      'hero.circular': 'Circular',
+      'hero.protocol': 'Protocol-led',
+      /* conviction */
+      'conviction.kicker':   'What ArcaNova Sells',
+      'conviction.h2':       'ArcaNova sells conviction.',
+      'conviction.body1':    'The conviction that we do not have to accept things just because they have always been that way.',
+      'conviction.body2':    'That good food should not depend on luck, weather, distance, or season. That a chef should never have to say "we cannot get it." That a country should not have to depend on someone far away to feed its people. That farmers, scientists, and builders can work together to build something cleaner, closer, and more reliable. That a wasted grape skin, a spent lavender stalk, or a forgotten root pulp does not have to stay waste, when it can become food.',
+      'conviction.delivered':'Delivered Through',
+      'conviction.pill1':    'The Crops',
+      'conviction.pill2':    'CEA Platforms',
+      'conviction.pill3':    'Substrate Science',
+      'conviction.pill4':    'Bioeconomy Innovation',
+      'conviction.footnote': 'These are how we deliver on that conviction — they are not the reason it matters.',
+      /* built for */
+      'built.kicker':'Who We Are Built For',
+      'built.h2':    'Built for people who refuse to settle for "not available."',
+      'built.name1': 'The Chef',
+      'built.desc1': 'Who wants freshness without compromise — and refuses to say "not available."',
+      'built.name2': 'The Scientist',
+      'built.desc2': 'Who wants to turn research into real life — not just publications.',
+      'built.name3': 'The Investor',
+      'built.desc3': 'Who wants to back courage, not copycats — and fund something that lasts.',
+      'built.name4': 'The People',
+      'built.desc4': 'Who simply want better food, grown with intelligence and care, close to home.',
+      'built.name5': 'Circular Bioeconomy Partners',
+      'built.desc5': 'Who want underutilized industrial byproducts turned into higher-value agriculture, not waste.',
+      'built.footer':'ArcaNova is built for people who believe the future should be grown, not imported.',
+      /* problem brand */
+      'pb.kicker': 'The Problem We Exist to Solve',
+      'pb.h2':     'Europe\'s appetite for premium, high-specialty crops is growing far faster than Europe\'s ability to grow them.',
+      'pb.lead':   'Genuine wasabi shows how extreme that gap has become. Commercial wasabi farming across the entire European continent produces well under ten metric tonnes a year, concentrated in a handful of farms in the UK, Switzerland, and the Azores. Fresh rhizomes lose quality quickly after harvest, making reliable local production essential — yet Europe remains near-totally dependent on imports from Japan, Taiwan, and New Zealand, at prices that put authentic wasabi out of reach for most kitchens.',
+      'pb.stat1':  'Total European wasabi production per year',
+      'pb.stat2':  'ArcaNova\'s harvest-to-customer delivery target',
+      'pb.stat3':  'Mushrooms imported into Europe every year',
+      'pb.body1':  'Specialty and functional mushrooms — shiitake, oyster, lion\'s mane, cordyceps — show rising demand across Europe, while domestic production stays constrained by labor, climate, cost, and substrate availability.',
+      'pb.body2':  'At the same time, France generates large volumes of underutilized industrial byproducts every year. ArcaNova turns regional byproducts into high-performance cultivation substrates — enabling local mushroom production while cutting waste and transport, and supporting a circular bioeconomy.',
+      'pb.bold':   'This is not a temporary shortage. It is a structural one — and it is precisely the gap ArcaNova is built to close.',
+      /* market stats */
+      'prob.kicker':   'The Problem',
+      'prob.h2':       'Premium shouldn\'t mean fragile.',
+      'prob.lead1':    'Premium buyers — chefs, specialty retailers, wellness and nutraceutical brands — consistently struggle to source high-value specialty crops that meet real standards of freshness, authenticity, and quality. Conventional agriculture and standard greenhouses are constrained by climate, geography, and long, fragile supply chains.',
+      'prob.lead2':    'The result is produce that travels too far, arrives too late, or simply isn\'t authentic to begin with. Climate volatility and rising demand for traceable, sustainably produced food are now pushing buyers and policymakers toward local, resilient alternatives — alternatives that, until now, haven\'t existed at the quality level premium markets actually require.',
+      'prob.stat-why': 'Why this gap is widening',
+      'prob.s1':       'Lost by European farms to extreme weather every year — rising as climate volatility increases',
+      'prob.s2':       'Of the world\'s fresh produce is lost or wasted before it reaches a plate',
+      'prob.s3':       'Of buyers say sourcing transparency now directly shapes what they purchase',
+      'prob.s4':       'Projected size of the food traceability market by 2034, up from $13B in 2024',
+      'prob.s5':       'Size of Europe\'s nutraceuticals market in 2025 — nearly doubling by 2035',
+      'prob.close':    'If you can\'t trace it, you can\'t promise it. <em>ArcaNova is built for buyers who refuse to compromise on either.</em>',
+      /* engines */
+      'eng.kicker':     'How We Close the Gap',
+      'eng.h2':         'Two Engines, One Conviction',
+      'eng.sub':        'ArcaNova closes Europe\'s premium crop supply gap through two interconnected engines — production and R&amp;D, feeding each other in a continuous loop.',
+      'eng.e1label':    'Engine One',
+      'eng.e1title':    'Production Engine',
+      'eng.e1desc':     'Commercial revenue through two pathways operating on ArcaNova\'s Controlled Environment Agriculture (CEA) platform.',
+      'eng.pathA-kicker':'Pathway A',
+      'eng.pathA-title': 'Premium Microgreens &amp; Specialty Crops',
+      'eng.pathA-desc':  'Precision-controlled CEA systems produce premium microgreens and specialty crops year-round, independent of weather or season, with wasabi representing the next phase of crop expansion.',
+      'eng.pathB-kicker':'Pathway B',
+      'eng.pathB-title': 'Circular Mushroom Bioeconomy',
+      'eng.pathB-desc':  'French agro-industrial biowaste is transformed into substrate for premium mushrooms, creating a closed-loop system where waste becomes food and spent substrate is returned to the land. Original work protected under formal French IP.',
+      'eng.loop1':      'Real-world data →',
+      'eng.loop2':      '← Improved protocols',
+      'eng.e2label':    'Engine Two',
+      'eng.e2title':    'R&amp;D Engine',
+      'eng.e2desc':     'Working with academic, scientific, and industry partners, the R&amp;D Engine continuously improves crop performance and substrate formulations — insights that strengthen production, while production data accelerates research.',
+      'eng.tag1':       'Crop Performance',
+      'eng.tag2':       'Substrate Innovation',
+      'eng.tag3':       'Yield Consistency',
+      'eng.tag4':       'Resource Efficiency',
+      /* contact */
+      'contact.kicker':      'Get in Touch',
+      'contact.h2':          'Let\'s talk about what you\'re growing.',
+      'contact.info':        'Whether you are a premium buyer, investor, research partner, or simply curious — we would love to hear from you.',
+      'contact.loc-label':   'Location',
+      'contact.email-label': 'Email',
+      'contact.mobile-label':'Mobile',
+      /* form */
+      'form.name':    'Name',
+      'form.name-ph': 'Your full name',
+      'form.email':   'Email',
+      'form.email-ph':'you@company.com',
+      'form.org':     'Organisation',
+      'form.org-ph':  'Company or institution',
+      'form.interest':'Interest',
+      'form.opt0':    'Select…',
+      'form.opt1':    'Premium crop sourcing',
+      'form.opt2':    'Investment & partnership',
+      'form.opt3':    'Research collaboration',
+      'form.opt4':    'Circular bioeconomy',
+      'form.opt5':    'Farm deployment / demo',
+      'form.opt6':    'General enquiry',
+      'form.message': 'Message',
+      'form.msg-ph':  'Tell us about your project, goals, or questions…',
+      'form.submit':  'Send Message →',
+      'form.note':    'Or reach us directly at aviswanath@arcanova-france.com · +33 749 085 511',
+    },
+
+    fr: {
+      /* nav */
+      'nav.about':   'À propos',
+      'nav.problem': 'Le Problème',
+      'nav.approach':'Notre Approche',
+      'nav.contact': 'Contact',
+      /* cover */
+      'cover.tagline':     'La Saison, C\'est Maintenant',
+      'cover.discover':    'Découvrir Notre Histoire',
+      'cover.touch':       'Nous Contacter',
+      'cover.scroll':      'Défiler',
+      'cover.confidential':'Pour Partenaires et Investisseurs',
+      /* mission / vision */
+      'mv.purpose':      'Notre Vocation',
+      'mv.mission-label':'Mission',
+      'mv.mission-text': '« Décoder, cultiver et commercialiser les cultures spéciales les plus exigeantes du monde grâce à une agriculture en environnement contrôlé fondée sur la science — transformer la connaissance culturale en une source de valeur évolutive et durable. »',
+      'mv.vision-label': 'Vision',
+      'mv.vision-text':  '« Un monde où les cultures d\'exception ne sont plus limitées par le climat, la géographie ou la saisonnalité, mais peuvent être cultivées localement, de manière fiable et à leur plus haut potentiel partout où elles sont nécessaires. »',
+      /* hero */
+      'hero.headline': 'Cultivé avec Précision.<br>Conçu Scientifiquement.',
+      'hero.sub':      'ArcaNova construit des systèmes de culture en environnement contrôlé pour des cultures spéciales à haute valeur — alliant biotechnologie végétale, ingénierie de précision et agriculture circulaire pour produire ce que l\'agriculture conventionnelle ne peut pas. Nous servons des acheteurs premium, des chercheurs et des partenaires en quête d\'une qualité fiable et scientifiquement validée, toute l\'année, quel que soit le climat.',
+      'hero.quote':    'Pas des cultures. Pas des conteneurs. Pas de la technologie. Au fond, nous vendons une conviction enracinée — l\'assurance que les limites peuvent être remises en question, repensées et brisées, que la rareté peut être résolue, que même dans un monde changeant, la vie peut encore être cultivée. N\'importe où.',
+      'hero.close':    'L\'avenir doit être cultivé, pas importé.',
+      'hero.local':    'Local',
+      'hero.verified': 'Vérifié',
+      'hero.circular': 'Circulaire',
+      'hero.protocol': 'Guidé par le Protocole',
+      /* conviction */
+      'conviction.kicker':   'Ce que Vend ArcaNova',
+      'conviction.h2':       'ArcaNova vend une conviction.',
+      'conviction.body1':    'La conviction que nous n\'avons pas à accepter les choses simplement parce qu\'elles ont toujours été ainsi.',
+      'conviction.body2':    'Que la bonne nourriture ne devrait pas dépendre de la chance, du temps, de la distance ou de la saison. Qu\'un chef ne devrait jamais avoir à dire « nous ne pouvons pas l\'obtenir ». Qu\'un pays ne devrait pas dépendre de quelqu\'un loin pour nourrir son peuple. Que les agriculteurs, les scientifiques et les constructeurs peuvent travailler ensemble pour bâtir quelque chose de plus propre, de plus proche et de plus fiable. Qu\'une peau de raisin gaspillée, une tige de lavande usée ou un marc de racine oublié ne doivent pas rester des déchets, quand ils peuvent devenir de la nourriture.',
+      'conviction.delivered':'Proposé Via',
+      'conviction.pill1':    'Les Cultures',
+      'conviction.pill2':    'Plateformes CEA',
+      'conviction.pill3':    'Science des Substrats',
+      'conviction.pill4':    'Innovation Bioéconomique',
+      'conviction.footnote': 'C\'est ainsi que nous concrétisons cette conviction — ce ne sont pas les raisons pour lesquelles elle est importante.',
+      /* built for */
+      'built.kicker':'Pour Qui Nous Sommes Faits',
+      'built.h2':    'Conçu pour ceux qui refusent de se contenter de « non disponible ».',
+      'built.name1': 'Le Chef',
+      'built.desc1': 'Qui veut la fraîcheur sans compromis — et refuse de dire « non disponible ».',
+      'built.name2': 'Le Scientifique',
+      'built.desc2': 'Qui veut transformer la recherche en vie réelle — pas seulement en publications.',
+      'built.name3': 'L\'Investisseur',
+      'built.desc3': 'Qui veut soutenir le courage, pas les imitateurs — et financer quelque chose qui dure.',
+      'built.name4': 'Les Citoyens',
+      'built.desc4': 'Qui veulent simplement une meilleure alimentation, cultivée avec intelligence et soin, près de chez eux.',
+      'built.name5': 'Partenaires Bioéconomie Circulaire',
+      'built.desc5': 'Qui veulent transformer des sous-produits industriels sous-utilisés en agriculture à plus forte valeur, pas en déchets.',
+      'built.footer':'ArcaNova est conçu pour ceux qui croient que l\'avenir devrait être cultivé, pas importé.',
+      /* problem brand */
+      'pb.kicker': 'Le Problème que Nous Existons à Résoudre',
+      'pb.h2':     'L\'appétit de l\'Europe pour des cultures premium de haute spécialité croît bien plus vite que la capacité de l\'Europe à les produire.',
+      'pb.lead':   'Le wasabi authentique illustre à quel point cet écart est extrême. La culture commerciale du wasabi sur tout le continent européen produit bien moins de dix tonnes métriques par an, concentrée dans une poignée de fermes au Royaume-Uni, en Suisse et aux Açores. Les rhizomes frais perdent rapidement leur qualité après la récolte, rendant une production locale fiable essentielle — pourtant l\'Europe reste presque totalement dépendante des importations du Japon, de Taïwan et de Nouvelle-Zélande, à des prix qui mettent le wasabi authentique hors de portée pour la plupart des cuisines.',
+      'pb.stat1':  'Production totale européenne de wasabi par an',
+      'pb.stat2':  'Objectif de livraison d\'ArcaNova de la récolte au client',
+      'pb.stat3':  'Champignons importés en Europe chaque année',
+      'pb.body1':  'Les champignons spécialisés et fonctionnels — shiitake, pleurote, crinière de lion, cordyceps — affichent une demande croissante en Europe, tandis que la production nationale reste limitée par la main-d\'œuvre, le climat, les coûts et la disponibilité des substrats.',
+      'pb.body2':  'Parallèlement, la France génère chaque année de grands volumes de sous-produits industriels sous-utilisés. ArcaNova transforme ces sous-produits régionaux en substrats de culture haute performance — permettant la production locale de champignons tout en réduisant les déchets et le transport, et en soutenant une bioéconomie circulaire.',
+      'pb.bold':   'Ce n\'est pas une pénurie temporaire. C\'est une pénurie structurelle — et c\'est précisément l\'écart qu\'ArcaNova est conçu à combler.',
+      /* market stats */
+      'prob.kicker':   'Le Problème',
+      'prob.h2':       'Premium ne devrait pas signifier fragile.',
+      'prob.lead1':    'Les acheteurs premium — chefs, détaillants spécialisés, marques bien-être et nutraceutiques — peinent constamment à s\'approvisionner en cultures spéciales à haute valeur répondant aux véritables critères de fraîcheur, d\'authenticité et de qualité. L\'agriculture conventionnelle et les serres standard sont contraintes par le climat, la géographie et de longues chaînes d\'approvisionnement fragiles.',
+      'prob.lead2':    'Il en résulte des produits qui voyagent trop loin, arrivent trop tard ou ne sont tout simplement pas authentiques. La volatilité climatique et la demande croissante d\'aliments traçables et produits durablement poussent désormais acheteurs et décideurs vers des alternatives locales et résilientes — des alternatives qui, jusqu\'à présent, n\'existaient pas au niveau de qualité requis par les marchés premium.',
+      'prob.stat-why': 'Pourquoi cet écart se creuse',
+      'prob.s1':       'Perdu par les fermes européennes à cause des conditions météorologiques extrêmes chaque année — augmentant avec la volatilité climatique',
+      'prob.s2':       'Des produits frais mondiaux sont perdus ou gaspillés avant d\'atteindre une assiette',
+      'prob.s3':       'Des acheteurs affirment que la transparence de l\'approvisionnement influence directement leurs achats',
+      'prob.s4':       'Taille projetée du marché de la traçabilité alimentaire d\'ici 2034, contre 13 milliards en 2024',
+      'prob.s5':       'Taille du marché européen des nutraceutiques en 2025 — quasi doublé d\'ici 2035',
+      'prob.close':    'Si vous ne pouvez pas le tracer, vous ne pouvez pas le promettre. <em>ArcaNova est conçu pour les acheteurs qui refusent de compromettre l\'un ou l\'autre.</em>',
+      /* engines */
+      'eng.kicker':     'Comment Nous Comblons l\'Écart',
+      'eng.h2':         'Deux Moteurs, Une Conviction',
+      'eng.sub':        'ArcaNova comble l\'écart d\'approvisionnement en cultures premium en Europe grâce à deux moteurs interconnectés — production et R&amp;D, s\'alimentant mutuellement en boucle continue.',
+      'eng.e1label':    'Moteur Un',
+      'eng.e1title':    'Moteur de Production',
+      'eng.e1desc':     'Revenus commerciaux via deux voies opérant sur la plateforme d\'Agriculture en Environnement Contrôlé (AEC) d\'ArcaNova.',
+      'eng.pathA-kicker':'Voie A',
+      'eng.pathA-title': 'Micro-pousses Premium &amp; Cultures Spéciales',
+      'eng.pathA-desc':  'Les systèmes AEC à contrôle de précision produisent des micro-pousses premium et des cultures spéciales toute l\'année, indépendamment de la météo ou de la saison, le wasabi représentant la prochaine phase d\'expansion des cultures.',
+      'eng.pathB-kicker':'Voie B',
+      'eng.pathB-title': 'Bioéconomie Circulaire des Champignons',
+      'eng.pathB-desc':  'Les biodéchets agro-industriels français sont transformés en substrat pour des champignons premium, créant un système en boucle fermée où les déchets deviennent aliments et le substrat usagé est restitué à la terre. Travaux originaux protégés par la propriété intellectuelle française formelle.',
+      'eng.loop1':      'Données réelles →',
+      'eng.loop2':      '← Protocoles améliorés',
+      'eng.e2label':    'Moteur Deux',
+      'eng.e2title':    'Moteur R&amp;D',
+      'eng.e2desc':     'En collaboration avec des partenaires académiques, scientifiques et industriels, le Moteur R&amp;D améliore continuellement les performances des cultures et les formulations de substrats — des insights qui renforcent la production, tandis que les données de production accélèrent la recherche.',
+      'eng.tag1':       'Performances des Cultures',
+      'eng.tag2':       'Innovation Substrats',
+      'eng.tag3':       'Cohérence des Rendements',
+      'eng.tag4':       'Efficacité des Ressources',
+      /* contact */
+      'contact.kicker':      'Nous Contacter',
+      'contact.h2':          'Parlons de ce que vous cultivez.',
+      'contact.info':        'Que vous soyez un acheteur premium, un investisseur, un partenaire de recherche ou simplement curieux — nous serions ravis d\'avoir de vos nouvelles.',
+      'contact.loc-label':   'Localisation',
+      'contact.email-label': 'E-mail',
+      'contact.mobile-label':'Téléphone',
+      /* form */
+      'form.name':    'Nom',
+      'form.name-ph': 'Votre nom complet',
+      'form.email':   'E-mail',
+      'form.email-ph':'vous@société.com',
+      'form.org':     'Organisation',
+      'form.org-ph':  'Entreprise ou institution',
+      'form.interest':'Intérêt',
+      'form.opt0':    'Sélectionner…',
+      'form.opt1':    'Approvisionnement en cultures premium',
+      'form.opt2':    'Investissement &amp; partenariat',
+      'form.opt3':    'Collaboration en recherche',
+      'form.opt4':    'Bioéconomie circulaire',
+      'form.opt5':    'Déploiement ferme / démo',
+      'form.opt6':    'Renseignement général',
+      'form.message': 'Message',
+      'form.msg-ph':  'Parlez-nous de votre projet, vos objectifs ou vos questions…',
+      'form.submit':  'Envoyer →',
+      'form.note':    'Ou contactez-nous directement à aviswanath@arcanova-france.com · +33 749 085 511',
+    }
+  };
+
+  function applyLang(lang) {
+    /* text content */
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (T[lang][key] !== undefined) {
+        el.innerHTML = T[lang][key];
+      }
+    });
+    /* placeholders */
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-ph');
+      if (T[lang][key] !== undefined) {
+        el.placeholder = T[lang][key];
+      }
+    });
+    /* toggle button states */
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    /* persist */
+    try { localStorage.setItem('arcanova-lang', lang); } catch(e){}
+    document.documentElement.lang = lang;
+  }
+
+  /* wire up buttons */
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyLang(btn.getAttribute('data-lang'));
+    });
+  });
+
+  /* restore saved language on load */
+  var saved;
+  try { saved = localStorage.getItem('arcanova-lang'); } catch(e){}
+  applyLang(saved === 'fr' ? 'fr' : 'en');
+})();
 </script>
 
 </body>
