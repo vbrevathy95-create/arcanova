@@ -255,6 +255,84 @@
     .mv-footer { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: rgba(245,241,230,0.35); letter-spacing: 0.12em; }
 
     /* ═══════════════════════════════════════
+       SECTION 1B — INTRODUCTION FILM
+    ═══════════════════════════════════════ */
+    .film {
+      background: linear-gradient(to bottom, #182E20 0%, var(--forest-deep) 100%);
+      padding: 5rem 2.5rem 6rem;
+      text-align: center;
+    }
+    .film-inner { max-width: 1080px; margin: 0 auto; }
+    .film-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 2.5rem;
+    }
+    .film-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--forest-deep) url("media/arcanova-intro-poster.jpg") center / cover no-repeat;
+      border: 1px solid var(--border-d);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .film-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .film-play {
+      position: absolute; top: 50%; left: 50%;
+      width: 76px; height: 76px; margin: -38px 0 0 -38px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; cursor: pointer;
+      background: rgba(11,24,16,0.55);
+      border: 1px solid rgba(245,241,230,0.45);
+      backdrop-filter: blur(6px);
+      color: var(--cream);
+      transition: all 0.22s;
+    }
+    .film-play:hover { background: rgba(11,24,16,0.75); border-color: var(--cream); transform: scale(1.04); }
+    .film-play svg { width: 22px; height: 22px; margin-left: 4px; }
+    .film-sound {
+      position: absolute; left: 1rem; bottom: 1rem;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.5rem 1rem; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cream);
+      background: rgba(11,24,16,0.7);
+      border: 1px solid rgba(245,241,230,0.3);
+      backdrop-filter: blur(6px);
+      transition: all 0.22s;
+    }
+    .film-sound:hover { border-color: rgba(245,241,230,0.6); background: rgba(11,24,16,0.85); }
+    .film-sound svg { width: 14px; height: 14px; }
+    .film-play:focus-visible, .film-sound:focus-visible, .film-video:focus-visible {
+      outline: 2px solid var(--sage-light); outline-offset: 3px;
+    }
+    .film-error {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 0.9rem 1rem;
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.06em;
+      color: var(--cream); background: rgba(11,24,16,0.85);
+    }
+    .film-play, .film-sound, .film-error { visibility: hidden; opacity: 0; transition: opacity 0.3s, visibility 0.3s; }
+    .film-frame[data-state="idle"]    .film-play,
+    .film-frame[data-state="ambient"] .film-sound,
+    .film-frame[data-state="error"]   .film-error { visibility: visible; opacity: 1; }
+    .film-caption {
+      font-family: 'EB Garamond', serif; font-style: italic;
+      font-size: 1.05rem; line-height: 1.6;
+      color: rgba(245,241,230,0.55);
+      max-width: 560px; margin: 1.75rem auto 0;
+    }
+    .film .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ═══════════════════════════════════════
        SECTION 3 — HERO (exact from Hero Web Section.html)
     ═══════════════════════════════════════ */
     .hero {
@@ -665,6 +743,10 @@
       .nav-links { display: none; }
       .hero { padding: 96px 20px 80px; }
       .hero-sub, .hero-rule, .hero-quote { margin-bottom: 44px; }
+      .film { padding: 3.5rem 1.25rem 4rem; }
+      .film-kicker { margin-bottom: 1.75rem; }
+      .film-play { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
+      .film-sound { left: 0.6rem; bottom: 0.6rem; padding: 0.45rem 0.8rem; }
       .audience-row { grid-template-columns: 44px 1fr; }
       .a-desc { grid-column: 2; margin-top: 6px; }
       .form-row { grid-template-columns: 1fr; }
@@ -717,6 +799,40 @@
   </div>
 
   <div class="cover-confidential" data-i18n="cover.confidential">For Partner and Investor Discussion</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1B — INTRODUCTION FILM
+══════════════════════════════════════════ -->
+<section class="film" id="film" aria-labelledby="film-title">
+  <div class="film-inner">
+    <div class="film-kicker" id="film-title" data-i18n="film.kicker">Introducing ArcaNova</div>
+
+    <div class="film-frame" data-state="idle">
+      <video class="film-video" id="filmVideo" muted loop playsinline preload="none"
+             poster="media/arcanova-intro-poster.jpg" aria-describedby="film-caption">
+        <source data-src="media/arcanova-intro-720.mp4" type="video/mp4" media="(max-width: 900px)">
+        <source data-src="media/arcanova-intro-1080.mp4" type="video/mp4">
+      </video>
+      <noscript>
+        <video class="film-video" controls playsinline preload="none" poster="media/arcanova-intro-poster.jpg">
+          <source src="media/arcanova-intro-1080.mp4" type="video/mp4">
+        </video>
+      </noscript>
+
+      <button class="film-play" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        <span class="sr-only" data-i18n="film.play">Play the ArcaNova introduction video</span>
+      </button>
+      <button class="film-sound" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+        <span data-i18n="film.sound">Watch with sound</span>
+      </button>
+      <div class="film-error" role="status" data-i18n="film.error">The video could not be loaded.</div>
+    </div>
+
+    <p class="film-caption" id="film-caption" data-i18n="film.caption">A one-minute introduction to ArcaNova and the conviction behind it.</p>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -1098,6 +1214,74 @@
 </script>
 
 <!-- ══════════════════════════════════════════
+     INTRODUCTION FILM SCRIPT
+     idle → play button · ambient → muted in-view loop · engaged → native controls
+══════════════════════════════════════════ -->
+<script>
+  (function () {
+    var video = document.getElementById('filmVideo');
+    if (!video) return;
+    var frame    = video.parentElement;
+    var sources  = video.querySelectorAll('source');
+    var reduce   = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var saveData = navigator.connection && navigator.connection.saveData;
+    var loaded   = false;
+
+    function setState(s) { frame.dataset.state = s; }
+
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      sources.forEach(function (s) { s.src = s.dataset.src; });
+      video.preload = 'auto';
+      video.load();
+    }
+
+    function autoplay() {
+      if (reduce.matches || saveData || frame.dataset.state !== 'idle') return;
+      load();
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { setState('idle'); });
+    }
+
+    /* user takes over: sound on, native controls, no looping */
+    function engage(restart) {
+      load();
+      setState('engaged');
+      video.muted = false;
+      video.loop = false;
+      video.controls = true;
+      if (restart) video.currentTime = 0;
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+      video.focus();
+    }
+
+    frame.querySelector('.film-play').addEventListener('click', function () { engage(false); });
+    frame.querySelector('.film-sound').addEventListener('click', function () { engage(true); });
+
+    video.addEventListener('playing', function () {
+      if (frame.dataset.state !== 'engaged') setState('ambient');
+    });
+    video.addEventListener('pause', function () {
+      if (frame.dataset.state === 'ambient') setState('idle');
+    });
+    sources[sources.length - 1].addEventListener('error', function () { setState('error'); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) autoplay();
+        else if (!video.paused) video.pause();
+      }, { threshold: 0.5 }).observe(frame);
+    }
+
+    reduce.addEventListener && reduce.addEventListener('change', function () {
+      if (reduce.matches && frame.dataset.state === 'ambient') video.pause();
+    });
+  })();
+</script>
+
+<!-- ══════════════════════════════════════════
      LANGUAGE SWITCHER
 ══════════════════════════════════════════ -->
 <script>
@@ -1115,6 +1299,12 @@
       'cover.touch':       'Get in Touch',
       'cover.scroll':      'Scroll',
       'cover.confidential':'For Partner and Investor Discussion',
+      /* film */
+      'film.kicker':  'Introducing ArcaNova',
+      'film.play':    'Play the ArcaNova introduction video',
+      'film.sound':   'Watch with sound',
+      'film.error':   'The video could not be loaded.',
+      'film.caption': 'A one-minute introduction to ArcaNova and the conviction behind it.',
       /* mission / vision */
       'mv.purpose':      'Our Purpose',
       'mv.mission-label':'Mission',
@@ -1241,6 +1431,12 @@
       'cover.touch':       'Nous Contacter',
       'cover.scroll':      'Défiler',
       'cover.confidential':'Pour Partenaires et Investisseurs',
+      /* film */
+      'film.kicker':  'Découvrir ArcaNova',
+      'film.play':    'Lire la vidéo de présentation d\'ArcaNova',
+      'film.sound':   'Regarder avec le son',
+      'film.error':   'La vidéo n\'a pas pu être chargée.',
+      'film.caption': 'Une présentation d\'une minute d\'ArcaNova et de la conviction qui l\'anime.',
       /* mission / vision */
       'mv.purpose':      'Notre Vocation',
       'mv.mission-label':'Mission',
