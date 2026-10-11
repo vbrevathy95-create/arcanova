@@ -813,10 +813,12 @@
              poster="media/arcanova-intro-poster.jpg" aria-describedby="film-caption">
         <source data-src="media/arcanova-intro-720.mp4" type="video/mp4" media="(max-width: 900px)">
         <source data-src="media/arcanova-intro-1080.mp4" type="video/mp4">
+        <source data-src="media/arcanova-intro-720.webm" type="video/webm">
       </video>
       <noscript>
         <video class="film-video" controls playsinline preload="none" poster="media/arcanova-intro-poster.jpg">
           <source src="media/arcanova-intro-1080.mp4" type="video/mp4">
+          <source src="media/arcanova-intro-720.webm" type="video/webm">
         </video>
       </noscript>
 
@@ -1266,7 +1268,11 @@
     video.addEventListener('pause', function () {
       if (frame.dataset.state === 'ambient') setState('idle');
     });
-    sources[sources.length - 1].addEventListener('error', function () { setState('error'); });
+    /* src-less placeholder sources fire 'error' at page load — only a failure
+       after load(), once every source has been tried, is a real one */
+    sources[sources.length - 1].addEventListener('error', function () {
+      if (loaded && video.networkState === video.NETWORK_NO_SOURCE) setState('error');
+    });
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
